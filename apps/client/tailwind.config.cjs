@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 // eslint-disable-next-line @typescript-eslint/no-require-imports, no-undef
-const config = require('@repo/config/tailwindConfig');
+const config = require('@repo/ui/tailwind.config');
 
 // eslint-disable-next-line no-undef
 module.exports = {

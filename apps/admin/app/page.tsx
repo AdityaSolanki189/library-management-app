@@ -2,9 +2,9 @@ import { Button } from '@repo/ui/button';
 
 export default function Home() {
     return (
-        <div className="h-full w-full flex">
+        <div className="h-screen flex flex-col justify-center items-center bg-slate-300">
             <h1>Hello World, This is the Admin Portal</h1>
-            <Button className="bg-blue-500 text-white" appName="Admin">
+            <Button className='border border-blue-400 rounded-md'>
                 Click me
             </Button>
         </div>
