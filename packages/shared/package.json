@@ -1,0 +1,23 @@
+{
+    "name": "@repo/shared",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "build": "tsc",
+        "dev": "tsc -w"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "description": "",
+    "exports": {
+        ".": "./src/index.ts"
+    },
+    "dependencies": {
+        "@repo/typescript-config": "workspace:*",
+        "zod": "^3.24.1"
+    },
+    "devDependencies": {
+        "@types/node": "^22.10.6"
+    }
+}
