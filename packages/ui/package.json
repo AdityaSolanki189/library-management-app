@@ -18,20 +18,29 @@
         "typescript": "5.5.4"
     },
     "dependencies": {
-        "@radix-ui/react-slot": "^1.1.0",
+        "@hookform/resolvers": "^3.10.0",
+        "@radix-ui/react-label": "^2.1.1",
+        "@radix-ui/react-slot": "^1.1.1",
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
+        "react-hook-form": "^7.54.2",
         "tailwind-merge": "^2.6.0",
-        "tailwindcss-animate": "^1.0.7"
+        "tailwindcss-animate": "^1.0.7",
+        "zod": "^3.24.1"
     },
     "exports": {
         "./globals.css": "./src/globals.css",
         "./postcss.config": "./postcss.config.mjs",
         "./tailwind.config": "./tailwind.config.ts",
-        "./button": "./src/components/ui/button.tsx",
         "./global.css": "./src/lib/utils.ts",
-        "./utils": "./src/lib/utils.ts"
+        "./icons/*": "./src/components/icons/*",
+        "./utils": "./src/lib/utils.ts",
+        "./button": "./src/components/ui/button.tsx",
+        "./alert": "./src/components/ui/alert.tsx",
+        "./input": "./src/components/ui/input.tsx",
+        "./form": "./src/components/ui/form.tsx",
+        "./use-toast": "./src/hooks/use-toast.ts"
     }
 }

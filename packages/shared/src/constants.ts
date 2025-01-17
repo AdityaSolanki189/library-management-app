@@ -37,3 +37,18 @@ export const DEFAULT_LOCALE: Locale = 'en';
 
 export const FORGOT_PASSWORD_VALIDITY_DURATION_IN_MINUTES = 60; // minutes
 export const VERIFY_EMAIL_VALIDITY_DURATION_IN_MINUTES = 60; // minutes
+
+export const FIELD_NAMES = {
+    fullName: 'Full name',
+    email: 'Email',
+    universityId: 'University ID Number',
+    password: 'Password',
+    universityCard: 'Upload University ID Card',
+};
+
+export const FIELD_TYPES = {
+    fullName: 'text',
+    email: 'email',
+    universityId: 'number',
+    password: 'password',
+};
