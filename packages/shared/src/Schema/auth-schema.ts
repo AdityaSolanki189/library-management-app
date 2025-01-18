@@ -15,3 +15,9 @@ export const signInSchema = z.object({
     password: z.string().min(8),
 });
 export type signUpSchemaPayload = z.infer<typeof signUpSchema>;
+
+export const SessionPayload = z.object({
+    accessToken: z.string(),
+});
+
+export type SessionPayload = z.infer<typeof SessionPayload>;
