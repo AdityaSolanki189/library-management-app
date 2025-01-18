@@ -90,11 +90,13 @@ export const signUpSchema = z.object({
     universityCard: z.string().nonempty('University Card is required'),
     password: z.string().min(8),
 });
+export type signInSchemaPayload = z.infer<typeof signInSchema>;
 
 export const signInSchema = z.object({
     email: z.string().email(),
     password: z.string().min(8),
 });
+export type signUpSchemaPayload = z.infer<typeof signUpSchema>;
 
 export const bookSchema = z.object({
     title: z.string().trim().min(2).max(100),

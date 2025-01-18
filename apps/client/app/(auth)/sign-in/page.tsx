@@ -3,7 +3,7 @@
 import React from 'react';
 import AuthForm from '../../../components/AuthForm';
 import { signInSchema } from '@repo/shared';
-import { signInWithCredentials } from '@/lib/actions/auth';
+import { signInWithCredentials } from '../../../actions/auth';
 
 const Page = () => (
     <AuthForm

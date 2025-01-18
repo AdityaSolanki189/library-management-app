@@ -34,6 +34,7 @@
         "zod": "^3.22.4"
     },
     "devDependencies": {
+        "@repo/shared": "workspace:*",
         "@repo/eslint-config": "workspace:*",
         "@stylistic/eslint-plugin": "^2.1.0",
         "@types/cors": "^2.8.17",

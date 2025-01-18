@@ -102,7 +102,7 @@ const AuthForm = <T extends FieldValues>({
                                         }
                                     </FormLabel>
                                     <FormControl>
-                                        {field.name === 'universityCard' ? (
+                                        {/* {field.name === 'universityCard' ? (
                                             <FileUpload
                                                 type="image"
                                                 accept="image/*"
@@ -111,18 +111,18 @@ const AuthForm = <T extends FieldValues>({
                                                 variant="dark"
                                                 onFileChange={field.onChange}
                                             />
-                                        ) : (
-                                            <Input
-                                                required
-                                                type={
-                                                    FIELD_TYPES[
-                                                        field.name as keyof typeof FIELD_TYPES
-                                                    ]
-                                                }
-                                                {...field}
-                                                className="form-input"
-                                            />
-                                        )}
+                                        ) : ( */}
+                                        <Input
+                                            required
+                                            type={
+                                                FIELD_TYPES[
+                                                    field.name as keyof typeof FIELD_TYPES
+                                                ]
+                                            }
+                                            {...field}
+                                            className="form-input"
+                                        />
+                                        {/* )} */}
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>

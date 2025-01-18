@@ -152,6 +152,9 @@ importers:
       '@repo/eslint-config':
         specifier: workspace:*
         version: link:../../packages/eslint-config
+      '@repo/shared':
+        specifier: workspace:*
+        version: link:../../packages/shared
       '@stylistic/eslint-plugin':
         specifier: ^2.1.0
         version: 2.13.0(eslint@8.57.1)(typescript@5.5.4)
