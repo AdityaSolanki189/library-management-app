@@ -6,7 +6,7 @@ export async function getAllVerifiedUsers() {
   return await db
     .select({
       id: users.id,
-      name: users.name,
+      name: users.fullName,
       email: users.email,
       isVerified: users.isVerified,
       isAdmin: users.isAdmin,
@@ -20,7 +20,7 @@ export async function getAllUsers() {
   return await db
     .select({
       id: users.id,
-      name: users.name,
+      name: users.fullName,
       email: users.email,
       isVerified: users.isVerified,
       isAdmin: users.isAdmin,

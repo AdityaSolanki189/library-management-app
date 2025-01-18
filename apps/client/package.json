@@ -13,6 +13,7 @@
     "dependencies": {
         "@hookform/resolvers": "^3.10.0",
         "@repo/ui": "workspace:*",
+        "jose": "^5.9.6",
         "next": "^15.1.0",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
@@ -20,8 +21,8 @@
         "zod": "^3.24.1"
     },
     "devDependencies": {
-        "@repo/shared": "workspace:*",
         "@repo/eslint-config": "workspace:*",
+        "@repo/shared": "workspace:*",
         "@repo/typescript-config": "workspace:*",
         "@types/node": "^20",
         "@types/react": "18.3.1",

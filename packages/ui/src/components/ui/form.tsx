@@ -9,11 +9,12 @@ import {
   FieldPath,
   FieldValues,
   FormProvider,
+  FormProviderProps,
   useFormContext,
 } from "react-hook-form"
 
-import { cn } from "src/lib/utils"
-import { Label } from "src/components/ui/label"
+import { cn } from "../../lib/utils"
+import { Label } from "./label"
 
 const Form = FormProvider
 

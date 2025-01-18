@@ -3,6 +3,7 @@ import Image from 'next/image';
 // import { auth } from '@/auth';
 // import { redirect } from 'next/navigation';
 import logo from '@repo/ui/icons/logo.svg';
+import authLogo from "@repo/ui/images/auth-illustration.png";
 
 const Layout = async ({ children }: { children: ReactNode }) => {
     // const session = await auth();
@@ -31,7 +32,7 @@ const Layout = async ({ children }: { children: ReactNode }) => {
 
             <section className="auth-illustration">
                 <Image
-                    src="/images/auth-illustration.png"
+                    src={authLogo}
                     alt="auth illustration"
                     height={1000}
                     width={1000}
