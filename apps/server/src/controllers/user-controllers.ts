@@ -22,7 +22,7 @@ import { createHandler } from '../utils/create';
 import { sendVerificationEmail } from '../utils/email';
 import { BackendError, getStatusFromErrorCode } from '../utils/errors';
 import generateToken from '../utils/jwt';
-import { signInSchema, signUpSchema } from '@repo/shared';
+import { signInSchema, signUpSchema } from '@repo/shared/schema';
 
 export const handleUserLogin = createHandler(signInSchema, async (req, res) => {
     const { email, password } = req.body;

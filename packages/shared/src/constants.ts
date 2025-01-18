@@ -31,7 +31,7 @@ export const APP = {
 export const MAX_USERNAME_LENGTH = 48;
 export const MIN_USERNAME_LENGTH = 3;
 
-export const LOCALES = ['en', 'tr'] as const;
+export const LOCALES = ['en'] as const;
 export type Locale = (typeof LOCALES)[number];
 export const DEFAULT_LOCALE: Locale = 'en';
 

@@ -36,6 +36,7 @@
         "./tailwind.config": "./tailwind.config.ts",
         "./global.css": "./src/lib/utils.ts",
         "./icons/*": "./src/components/icons/*",
+        "./images/*": "./src/components/images/*",
         "./utils": "./src/lib/utils.ts",
         "./button": "./src/components/ui/button.tsx",
         "./alert": "./src/components/ui/alert.tsx",

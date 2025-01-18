@@ -7,68 +7,64 @@ import { type Locale } from './constants';
 type CustomZodErrorMap = (
     issue: z.ZodIssueOptionalMessage,
     _ctx: z.ErrorMapCtx,
-    locale: Locale,
 ) => {
     message: string;
 };
 
-const customErrorMap: CustomZodErrorMap = (issue, ctx, locale) => {
+const customErrorMap: CustomZodErrorMap = (issue, ctx) => {
     let err: string = ctx.defaultError;
 
     const t = (translations: Record<Locale, string>) => {
-        return translations[locale] ?? translations['en'];
+        return translations['en'];
     };
 
     if (issue.code === z.ZodIssueCode.invalid_arguments) {
-        err = t({ en: 'Invalid arguments.', tr: 'Geçersiz argümanlar.' });
+        err = t({ en: 'Invalid arguments.' });
     }
 
     if (issue.code === z.ZodIssueCode.invalid_date) {
-        err = t({ en: 'Invalid date.', tr: 'Geçersiz tarih.' });
+        err = t({ en: 'Invalid date.' });
     }
 
     if (issue.code === z.ZodIssueCode.invalid_enum_value) {
-        err = t({ en: 'Invalid value.', tr: 'Geçersiz değer.' });
+        err = t({ en: 'Invalid value.' });
     }
 
     if (issue.code === z.ZodIssueCode.invalid_intersection_types) {
-        err = t({ en: 'Invalid types.', tr: 'Geçersiz değerler.' });
+        err = t({ en: 'Invalid types.' });
     }
 
     if (issue.code === z.ZodIssueCode.invalid_literal) {
-        err = t({ en: 'Invalid literal.', tr: 'Geçersiz literal.' });
+        err = t({ en: 'Invalid literal.' });
     }
 
     if (issue.code === z.ZodIssueCode.invalid_return_type) {
-        err = t({ en: 'Invalid return type.', tr: 'Invalid return type.' });
+        err = t({ en: 'Invalid return type.' });
     }
 
     if (issue.code === z.ZodIssueCode.invalid_type) {
         err = t({
             en: `${issue.expected} expected, received ${issue.received}`,
-            tr: `${issue.expected} gereklidir, ${issue.received} alındı`,
         });
     }
 
     if (issue.code === z.ZodIssueCode.invalid_union) {
-        err = t({ en: 'Invalid input.', tr: 'Geçersiz giriş.' });
+        err = t({ en: 'Invalid input.' });
     }
 
     if (issue.code === z.ZodIssueCode.invalid_union_discriminator) {
         err = t({
             en: 'Invalid discriminator.',
-            tr: 'Geçersiz discriminator.',
         });
     }
 
     if (issue.code === z.ZodIssueCode.not_finite) {
-        err = t({ en: 'Number must be finite.', tr: 'Sayı sonsuz olamaz.' });
+        err = t({ en: 'Number must be finite.' });
     }
 
     if (issue.code === z.ZodIssueCode.not_multiple_of) {
         err = t({
             en: `Number must be a multiple of ${issue.multipleOf}.`,
-            tr: `Girilen sayı, ${issue.multipleOf} sayısına bölünebilir olmalıdır.`,
         });
     }
 
@@ -77,21 +73,18 @@ const customErrorMap: CustomZodErrorMap = (issue, ctx, locale) => {
             if (issue.exact === true) {
                 err = t({
                     en: `Array must contain exactly ${issue.maximum} element(s).`,
-                    tr: `Dizi tam olarak ${issue.maximum} eleman içermelidir.`,
                 });
             }
 
             if (issue.inclusive === true) {
                 err = t({
                     en: `Array must contain at most ${issue.maximum} element(s).`,
-                    tr: `Dizi en fazla ${issue.maximum} eleman içerebilir.`,
                 });
             }
 
             if (issue.inclusive === false) {
                 err = t({
                     en: `Array must contain less than ${issue.maximum} element(s).`,
-                    tr: `Dizi ${issue.maximum} elemandan daha az eleman içermelidir.`,
                 });
             }
         }
@@ -100,21 +93,18 @@ const customErrorMap: CustomZodErrorMap = (issue, ctx, locale) => {
             if (issue.exact === true) {
                 err = t({
                     en: `This field must contain exactly ${issue.maximum} character(s).`,
-                    tr: `Bu alan tam olarak ${issue.maximum} karakter içermelidir.`,
                 });
             }
 
             if (issue.inclusive === true) {
                 err = t({
                     en: `This field must contain at most ${issue.maximum} character(s).`,
-                    tr: `Bu alan en fazla ${issue.maximum} karakter içerebilir.`,
                 });
             }
 
             if (issue.inclusive === false) {
                 err = t({
                     en: `This field must contain less than ${issue.maximum} character(s).`,
-                    tr: `Bu alan ${issue.maximum} karakterdan daha az karakter içermelidir.`,
                 });
             }
         }
@@ -123,21 +113,18 @@ const customErrorMap: CustomZodErrorMap = (issue, ctx, locale) => {
             if (issue.exact === true) {
                 err = t({
                     en: `This must be exactly ${issue.maximum}.`,
-                    tr: `Tam olarak ${issue.maximum} olmalıdır.`,
                 });
             }
 
             if (issue.inclusive === true) {
                 err = t({
                     en: `This must be less than or equal to ${issue.maximum}.`,
-                    tr: `En fazla ${issue.maximum} olabilir.`,
                 });
             }
 
             if (issue.inclusive === false) {
                 err = t({
                     en: `This must be less than ${issue.maximum}.`,
-                    tr: `${issue.maximum} sayısından daha az olmalıdır.`,
                 });
             }
         }
@@ -150,21 +137,18 @@ const customErrorMap: CustomZodErrorMap = (issue, ctx, locale) => {
             if (issue.exact === true) {
                 err = t({
                     en: `Date must be exactly ${issue.maximum}.`,
-                    tr: `Tarih ${issue.maximum} olmalıdır.`,
                 });
             }
 
             if (issue.inclusive === true) {
                 err = t({
                     en: `Date must be smaller than or equal to ${issue.maximum}.`,
-                    tr: `Tarih en geç ${issue.maximum} olabilir.`,
                 });
             }
 
             if (issue.inclusive === false) {
                 err = t({
                     en: `Date must be smaller than ${issue.maximum}.`,
-                    tr: `${issue.maximum} tarihinden daha erken olmalıdır.`,
                 });
             }
         }
@@ -175,21 +159,18 @@ const customErrorMap: CustomZodErrorMap = (issue, ctx, locale) => {
             if (issue.exact === true) {
                 err = t({
                     en: `Array must contain exactly ${issue.minimum} element(s).`,
-                    tr: `Dizi tam olarak ${issue.minimum} eleman içermelidir.`,
                 });
             }
 
             if (issue.inclusive === true) {
                 err = t({
                     en: `Array must contain at least ${issue.minimum} element(s).`,
-                    tr: `Dizi en az ${issue.minimum} eleman içermelidir.`,
                 });
             }
 
             if (issue.inclusive === false) {
                 err = t({
                     en: `Array must contain more than ${issue.minimum} element(s).`,
-                    tr: `Dizi en az ${parseInt(issue.minimum.toString()) + 1} eleman içermelidir.`,
                 });
             }
         }
@@ -198,27 +179,23 @@ const customErrorMap: CustomZodErrorMap = (issue, ctx, locale) => {
             if (issue.minimum === 1) {
                 err = t({
                     en: 'This field is required.',
-                    tr: 'Bu alan gereklidir.',
                 });
             } else {
                 if (issue.exact === true) {
                     err = t({
                         en: `This field must contain exactly ${issue.minimum} character(s).`,
-                        tr: `Bu alan tam olarak ${issue.minimum} karakter içermelidir.`,
                     });
                 }
 
                 if (issue.inclusive === true) {
                     err = t({
                         en: `This field must contain at least ${issue.minimum} character(s).`,
-                        tr: `Bu alan en az ${issue.minimum} karakter içermelidir.`,
                     });
                 }
 
                 if (issue.inclusive === false) {
                     err = t({
                         en: `This field must contain more than ${issue.minimum} character(s).`,
-                        tr: `Bu alan en az ${parseInt(issue.minimum.toString()) + 1} karakter içermelidir.`,
                     });
                 }
             }
@@ -228,21 +205,18 @@ const customErrorMap: CustomZodErrorMap = (issue, ctx, locale) => {
             if (issue.exact === true) {
                 err = t({
                     en: `This must be exactly ${issue.minimum}.`,
-                    tr: `Tam olarak ${issue.minimum} olmalıdır.`,
                 });
             }
 
             if (issue.inclusive === true) {
                 err = t({
                     en: `This must be at least ${issue.minimum}.`,
-                    tr: `En az ${issue.minimum} olabilir.`,
                 });
             }
 
             if (issue.inclusive === false) {
                 err = t({
                     en: `This must be more than ${issue.minimum}.`,
-                    tr: `${issue.minimum} sayısından daha fazla olmalıdır.`,
                 });
             }
         }
@@ -255,32 +229,29 @@ const customErrorMap: CustomZodErrorMap = (issue, ctx, locale) => {
             if (issue.exact === true) {
                 err = t({
                     en: `Date must be exactly ${issue.minimum}.`,
-                    tr: `Tarih ${issue.minimum} olmalıdır.`,
                 });
             }
 
             if (issue.inclusive === true) {
                 err = t({
                     en: `Date must be greater than or equal to ${issue.minimum}.`,
-                    tr: `Tarih, ${issue.minimum} tarihinden daha geç veya eşit olmalıdır.`,
                 });
             }
 
             if (issue.inclusive === false) {
                 err = t({
                     en: `Date must be greater than ${issue.minimum}.`,
-                    tr: `Tarih ${issue.minimum} tarihinden daha geç olmalıdır.`,
                 });
             }
         }
     }
 
     if (issue.code === z.ZodIssueCode.unrecognized_keys) {
-        err = t({ en: 'Unrecognized keys.', tr: 'Unrecognized keys.' });
+        err = t({ en: 'Unrecognized keys.' });
     }
 
     return { message: err };
 };
 
 export const zodT = (t: Locale) =>
-    z.setErrorMap((issue, ctx) => customErrorMap(issue, ctx, t));
+    z.setErrorMap((issue, ctx) => customErrorMap(issue, ctx));

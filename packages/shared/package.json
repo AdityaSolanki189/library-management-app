@@ -11,7 +11,7 @@
     "description": "",
     "exports": {
         ".": "./src/index.ts",
-        "./schema/*": "./src/Schema/*"
+        "./schema": "./src/Schema/index.ts"
     },
     "dependencies": {
         "@repo/typescript-config": "workspace:*",

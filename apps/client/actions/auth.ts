@@ -9,6 +9,8 @@ import { apiUrl } from '../config';
 export const signUpWithCredentials = async (params: signUpSchemaPayload) => {
     const { fullName, email, universityId, universityCard, password } = params;
 
+    console.log(params);
+    
     //Validate the schema
     const verify = signUpSchema.parse(params);
 
@@ -41,6 +43,7 @@ export const signUpWithCredentials = async (params: signUpSchemaPayload) => {
 export const signInWithCredentials = async (params: signInSchemaPayload) => {
     const { email, password } = params;
 
+    console.log(params);
     //Validate the schema
     const verify = signInSchema.parse(params);
 

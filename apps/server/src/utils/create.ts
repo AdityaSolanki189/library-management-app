@@ -47,7 +47,7 @@ export function createHandler<T extends z.ZodType>(
         try {
             if (handler) {
                 const schema = schemaOrHandler as T;
-                schema.parse(req);
+                schema.parse(req.body);
                 await handler(req, res, next);
             } else {
                 const handler = schemaOrHandler as (
