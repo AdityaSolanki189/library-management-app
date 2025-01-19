@@ -1,26 +1,21 @@
-import { ReactNode } from 'react';
-import Image from 'next/image';
-// import { auth } from '@/auth';
-// import { redirect } from 'next/navigation';
 import logo from '@repo/ui/icons/logo.svg';
-import authLogo from "@repo/ui/images/auth-illustration.png";
+import authLogo from '@repo/ui/images/auth-illustration.png';
+import Image from 'next/image';
+import { redirect } from 'next/navigation';
+import { ReactNode } from 'react';
+import { getUser } from '../../actions/user';
 
 const Layout = async ({ children }: { children: ReactNode }) => {
-    // const session = await auth();
+    const session = await getUser();
 
-    // if (session) redirect('/');
+    if (session) redirect('/');
 
     return (
         <main className="auth-container">
             <section className="auth-form">
                 <div className="auth-box">
                     <div className="flex flex-row gap-3">
-                        <Image
-                            src={logo}
-                            alt="logo"
-                            width={37}
-                            height={37}
-                        />
+                        <Image src={logo} alt="logo" width={37} height={37} />
                         <h1 className="text-2xl font-semibold text-white">
                             BookShelf
                         </h1>

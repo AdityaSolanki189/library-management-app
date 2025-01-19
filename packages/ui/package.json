@@ -8,6 +8,7 @@
         "check-types": "tsc --noEmit"
     },
     "devDependencies": {
+        "@radix-ui/react-toast": "^1.2.4",
         "@repo/eslint-config": "workspace:*",
         "@repo/typescript-config": "workspace:*",
         "@turbo/gen": "^1.12.4",
@@ -23,6 +24,7 @@
         "@radix-ui/react-slot": "^1.1.1",
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
+        "lucide-react": "^0.473.0",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
         "react-hook-form": "^7.54.2",
@@ -43,6 +45,7 @@
         "./input": "./src/components/ui/input.tsx",
         "./form": "./src/components/ui/form.tsx",
         "./use-toast": "./src/hooks/use-toast.ts",
-        "./label": "./src/components/ui/label.tsx"
+        "./label": "./src/components/ui/label.tsx",
+        "./toaster": "./src/components/ui/toaster.tsx"
     }
 }

@@ -9,6 +9,7 @@ export async function getUser() {
     if (!session) {
         return null;
     }
+
     try {
         const response = await fetch(`${apiUrl}/auth/me`, {
             method: 'GET',
@@ -16,6 +17,9 @@ export async function getUser() {
                 Authorization: session.accessToken,
             },
         });
+
+        console.log('response', response);
+
         if (!response.ok) {
             const errorData = await response.json();
             throw new Error(errorData.message || 'Failed to fetch user data.');

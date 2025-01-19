@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import '@repo/ui/globals.css';
+import { Toaster } from "@repo/ui/toaster";
 
 const ibmPlexSans = localFont({
     src: [
@@ -51,6 +52,7 @@ export default function RootLayout({
                 className={`${ibmPlexSans.className} ${bebasNeue.variable} antialiased`}
             >
                 {children}
+                <Toaster />
             </body>
         </html>
     );
