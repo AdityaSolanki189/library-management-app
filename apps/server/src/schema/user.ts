@@ -32,10 +32,8 @@ export const selectUserSchema = createSelectSchema(users, {
 });
 
 export const verifyUserSchema = z.object({
-    query: selectUserSchema.pick({
-        email: true,
-        code: true,
-    }),
+    email: selectUserSchema.shape.email,
+    code: selectUserSchema.shape.code,
 });
 
 export const deleteUserSchema = z.object({

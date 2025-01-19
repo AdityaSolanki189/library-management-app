@@ -73,8 +73,7 @@ export const handleVerifyUser = createHandler(
     verifyUserSchema,
     async (req, res) => {
         try {
-            const { email, code } = req.query;
-
+            const { email, code } = req.body;
             await verifyUser(email, code);
             const template = render(
                 UserVerified({

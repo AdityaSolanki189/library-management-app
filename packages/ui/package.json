@@ -47,5 +47,6 @@
         "./use-toast": "./src/hooks/use-toast.ts",
         "./label": "./src/components/ui/label.tsx",
         "./toaster": "./src/components/ui/toaster.tsx"
-    }
+    },
+    "type": "module"
 }

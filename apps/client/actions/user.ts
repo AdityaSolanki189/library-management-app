@@ -11,14 +11,12 @@ export async function getUser() {
     }
 
     try {
-        const response = await fetch(`${apiUrl}/auth/me`, {
+        const response = await fetch(`${apiUrl}/api/user`, {
             method: 'GET',
             headers: {
-                Authorization: session.accessToken,
+                Authorization: `Bearer ${session.accessToken}`,
             },
         });
-
-        console.log('response', response);
 
         if (!response.ok) {
             const errorData = await response.json();
