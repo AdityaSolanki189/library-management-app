@@ -24,13 +24,14 @@ import { Input } from '@repo/ui/input';
 import Link from 'next/link';
 import { FIELD_NAMES, FIELD_TYPES } from '@repo/shared';
 // import FileUpload from '@/components/FileUpload';
-import { toast } from '@repo/ui/use-toast';
+// import { toast } from '@repo/ui/use-toast';
+import { toast } from '@repo/ui/sonner';
 import { useRouter } from 'next/navigation';
 
 interface Props<T extends FieldValues> {
     schema: ZodType<T>;
     defaultValues: T;
-    onSubmit: (data: T) => Promise<{ status: number, error?: string }>;
+    onSubmit: (data: T) => Promise<{ status: number; error?: string }>;
     type: 'SIGN_IN' | 'SIGN_UP';
 }
 
@@ -53,8 +54,7 @@ const AuthForm = <T extends FieldValues>({
         const result = await onSubmit(data);
 
         if (result.status === 200) {
-            toast({
-                title: 'Success',
+            toast('Success', {
                 description: isSignIn
                     ? 'You have successfully signed in.'
                     : 'You have successfully signed up.',
@@ -62,10 +62,8 @@ const AuthForm = <T extends FieldValues>({
 
             router.push('/');
         } else {
-            toast({
-                title: `Error ${isSignIn ? 'signing in' : 'signing up'}`,
+            toast(`Error ${isSignIn ? 'signing in' : 'signing up'}`, {
                 description: result?.error || 'An error occurred.',
-                variant: 'destructive',
             });
         }
     };

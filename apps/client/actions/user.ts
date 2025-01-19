@@ -26,7 +26,7 @@ export async function getUser() {
         const user = await response.json();
         return user;
     } catch (error) {
-        console.error('Error fetching user data:', error);
+        // console.error('Error fetching user data:', error);
         return null;
     }
 }

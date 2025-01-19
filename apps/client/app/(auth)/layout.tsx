@@ -4,14 +4,21 @@ import Image from 'next/image';
 import { redirect } from 'next/navigation';
 import { ReactNode } from 'react';
 import { getUser } from '../../actions/user';
+import ClientToast from '../../components/ClientToast'; // New client component
 
 const Layout = async ({ children }: { children: ReactNode }) => {
-    const session = await getUser();
+    let error = null;
 
-    if (session) redirect('/');
+    const session = await getUser();
+    if (session) {
+        redirect('/');
+    } else {
+        error = 'You have been Signed Out.';
+    }
 
     return (
         <main className="auth-container">
+            <ClientToast error={error} />
             <section className="auth-form">
                 <div className="auth-box">
                     <div className="flex flex-row gap-3">
