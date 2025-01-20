@@ -3,13 +3,17 @@ import random
 from faker import Faker
 import time
 from datetime import datetime
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 # Initialize Faker for generating realistic data
 fake = Faker()
 
 # Constants
 API_URL = "http://localhost:4000/api/book/create"
-AUTH_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI0OWZkY2E0NS1lMWJhLTRlMmItOWNkNS02OGUxMDJhMjBiODMiLCJpYXQiOjE3MzczNjgzNDEsImV4cCI6MTczNzM2ODk0MX0.i8kGOUT9oFBBcC6HvJXGByM4amFOxosMZ-1wVcATTDg"  # Replace with your actual auth token
+AUTH_TOKEN = os.getenv("AUTH_TOKEN") # Replace with your actual auth token
 HEADERS = {
     "Authorization": f"Bearer {AUTH_TOKEN}",
     "Content-Type": "application/json"
