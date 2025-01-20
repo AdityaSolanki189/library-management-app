@@ -1,6 +1,6 @@
 'use client';
 
-import { toast } from "@repo/ui/use-toast";
+import { toast } from "@repo/ui/sonner";
 import { Button } from "@repo/ui/button";
 
 export default function TestPage() {
@@ -8,8 +8,7 @@ export default function TestPage() {
         <div>
             <Button
                 onClick={() =>
-                    toast({
-                        title: "Test Toast",
+                    toast("Test Toast",{
                         description: "This is a test notification.",
                     })
                 }
