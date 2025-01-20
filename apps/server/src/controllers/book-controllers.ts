@@ -4,6 +4,7 @@ import {
     deleteBook,
     getAllBooks,
     getBookById,
+    getLatestBooks,
     updateBook,
 } from '../services/book-services';
 import { createHandler } from '../utils/create';
@@ -50,6 +51,18 @@ export const handleGetBookById = createHandler(async (_req, res) => {
     }
 
     res.status(200).json(book);
+});
+
+export const handleGetLatestBooks = createHandler(async (_req, res) => {    
+    const latestBooks = await getLatestBooks();
+
+    if(latestBooks.length === 0) {
+        throw new BackendError('NOT_FOUND', {
+            message: 'No books found',
+        });
+    }
+
+    res.status(200).json(latestBooks);
 });
 
 export const handleUpdateBookById = createHandler(

@@ -4,6 +4,7 @@ import {
     handleDeleteBook,
     handleGetAllBooks,
     handleGetBookById,
+    handleGetLatestBooks,
     handleUpdateBookById,
 } from '../controllers/book-controllers';
 import { authenticate } from '../middlewares/auth';
@@ -18,6 +19,7 @@ export default createRouter((router: Router) => {
         }),
         handleCreateBook,
     );
+    router.get('/latest', authenticate(), handleGetLatestBooks);
     router.get('/:id', authenticate(), handleGetBookById);
     router.patch(
         '/:id',

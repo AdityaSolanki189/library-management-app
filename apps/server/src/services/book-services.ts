@@ -77,6 +77,17 @@ export async function getAllBooks() {
     };
 }
 
+export async function getLatestBooks() {
+    // Fetch latest 5 books, sort by createdAt in descending order
+    const latestBooks = await db
+        .select()
+        .from(books)
+        .orderBy(desc(books.createdAt))
+        .limit(5);
+
+    return latestBooks;
+}
+
 export async function getBookById(id: string) {
     const book = await db.select().from(books).where(eq(books.id, id)).limit(1);
 
@@ -114,7 +125,6 @@ export async function updateBook(
 }
 
 export async function deleteBook(id: string) {
-
     const book = await getBookById(id);
 
     if (!book) {
