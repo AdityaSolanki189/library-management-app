@@ -19,3 +19,7 @@ export const addBookSchema = z.object({
 });
 
 export type addBookSchemaPayload = z.infer<typeof addBookSchema>;
+
+export const updateBookSchema = addBookSchema.partial();
+
+export type updateBookSchemaPayload = z.infer<typeof updateBookSchema>;

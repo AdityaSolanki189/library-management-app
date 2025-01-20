@@ -1,12 +1,34 @@
 import type { Router } from 'express';
+import {
+    handleCreateBook,
+    handleDeleteBook,
+    handleGetAllBooks,
+    handleGetBookById,
+    handleUpdateBookById,
+} from '../controllers/book-controllers';
 import { authenticate } from '../middlewares/auth';
 import { createRouter } from '../utils/create';
-import { handleCreateBook, handleGetAllBooks } from '../controllers/book-controllers';
 
 export default createRouter((router: Router) => {
-    router.post('/create', authenticate({
-        verifyAdmin: true,
-    }), handleCreateBook);
-
-    router.get('/', handleGetAllBooks);
+    router.get('/', authenticate(), handleGetAllBooks);
+    router.post(
+        '/create',
+        authenticate({
+            verifyAdmin: true,
+        }),
+        handleCreateBook,
+    );
+    router.get('/:id', authenticate(), handleGetBookById);
+    router.patch(
+        '/:id',
+        authenticate({
+            verifyAdmin: true,
+        }),
+        handleUpdateBookById,
+    );
+    router.delete(
+        '/:id',
+        authenticate({ verifyAdmin: true }),
+        handleDeleteBook,
+    );
 });

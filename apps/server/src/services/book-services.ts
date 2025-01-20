@@ -49,7 +49,7 @@ export async function addBook(book: addBookSchemaPayload) {
             title: books.title,
         });
 
-    if(!newBook) {
+    if (!newBook) {
         throw new BackendError('INTERNAL_ERROR', {
             message: 'Failed to add book',
         });
@@ -65,7 +65,7 @@ export async function getAllBooks() {
         .from(books)
         .orderBy(desc(books.createdAt));
 
-    if(!allBooks) {
+    if (!allBooks) {
         throw new BackendError('INTERNAL_ERROR', {
             message: 'Failed to fetch books',
         });
@@ -75,4 +75,61 @@ export async function getAllBooks() {
         books: allBooks,
         success: true,
     };
+}
+
+export async function getBookById(id: string) {
+    const book = await db.select().from(books).where(eq(books.id, id)).limit(1);
+
+    if (book.length === 0) {
+        throw new BackendError('NOT_FOUND', {
+            message: `Book with ID ${id} not found`,
+        });
+    }
+
+    return book;
+}
+
+export async function updateBook(
+    id: string,
+    updateFields: Partial<addBookSchemaPayload>,
+) {
+    const book = await getBookById(id);
+
+    if (!book) {
+        throw new BackendError('NOT_FOUND', {
+            message: `Book with ID ${id} not found`,
+        });
+    }
+
+    const updatedBook = await db
+        .update(books)
+        .set(updateFields)
+        .where(eq(books.id, id))
+        .returning({
+            id: books.id,
+            title: books.title,
+        });
+
+    return updatedBook;
+}
+
+export async function deleteBook(id: string) {
+
+    const book = await getBookById(id);
+
+    if (!book) {
+        throw new BackendError('NOT_FOUND', {
+            message: `Book with ID ${id} not found`,
+        });
+    }
+
+    const deletedBook = await db
+        .delete(books)
+        .where(eq(books.id, id))
+        .returning({
+            id: books.id,
+            title: books.title,
+        });
+
+    return deletedBook;
 }

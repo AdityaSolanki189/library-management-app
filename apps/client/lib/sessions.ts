@@ -1,8 +1,7 @@
 import { SessionPayload } from '@repo/shared/schema';
+import { decodeJwt, jwtVerify } from 'jose';
 import { cookies } from 'next/headers';
-import { jwtVerify, decodeJwt } from 'jose';
 import 'server-only';
-import path from 'path';
 
 const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET);
 
@@ -17,22 +16,26 @@ export async function decryptSession(cookieName: string) {
 }
 
 export async function createSession(sessionPayload: SessionPayload) {
-    const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
-    // const session = await encrypt(sessionPayload);
+    const expiresAt = new Date();
+    expiresAt.setUTCDate(expiresAt.getUTCDate() + 7); // Set expiration date to 7 days from now
 
     const isProduction = process.env.NODE_ENV === 'production';
     const cookieDomain = isProduction
         ? 'library-manager.onrender.com'
         : 'localhost';
 
-    (await cookies()).set('accessToken', sessionPayload.accessToken, {
-        httpOnly: true,
-        secure: isProduction,
-        expires: expiresAt,
-        sameSite: isProduction ? 'none' : 'lax',
-        path: '/',
-        domain: cookieDomain,
-    });
+    try {
+        (await cookies()).set('accessToken', sessionPayload.accessToken, {
+            httpOnly: true,
+            secure: isProduction,
+            expires: expiresAt,
+            sameSite: isProduction ? 'none' : 'lax',
+            path: '/',
+            domain: cookieDomain,
+        });
+    } catch (error) {
+        console.error('Failed to set cookie:', error);
+    }
 }
 
 export async function getSession() {
