@@ -47,8 +47,17 @@ export function createHandler<T extends z.ZodType>(
         try {
             if (handler) {
                 const schema = schemaOrHandler as T;
-                schema.parse(req.body);
-                await handler(req, res, next);
+                const merged = { ...req.body, ...req.params, ...req.query };
+                const validatedDate = schema.parse(merged);
+
+                await handler(
+                    {
+                        ...req,
+                        body: validatedDate,
+                    } as Omit<Request, keyof z.output<T>> & z.output<T>,
+                    res,
+                    next,
+                );
             } else {
                 const handler = schemaOrHandler as (
                     req: Request,

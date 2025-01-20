@@ -1,4 +1,4 @@
-"use server";
+'use server';
 
 import {
     signInSchema,
@@ -7,21 +7,10 @@ import {
     signUpSchemaPayload,
 } from '@repo/shared/schema';
 import { apiUrl } from '../config';
-import { cookies } from 'next/headers';
-import { stat } from 'fs';
-
-const cookieConfig = {
-    maxAge: 60 * 60 * 24 * 7, // 1 week
-    path: '/',
-    domain: process.env.HOST ?? 'localhost',
-    httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-}
+import { createSession } from '../lib/sessions';
 
 export const signUpWithCredentials = async (params: signUpSchemaPayload) => {
     const { fullName, email, universityId, universityCard, password } = params;
-
-    console.log(params);
 
     //Validate the schema
     const verify = signUpSchema.parse(params);
@@ -101,8 +90,9 @@ const handleSignInResponse = async (response: Response) => {
             throw new Error('Token not found');
         }
 
-        const cookieStorage = await cookies();
-        cookieStorage.set('jwt', token, cookieConfig);
+        await createSession({
+            accessToken: token,
+        });
     } catch (error) {
         throw new Error('Failed to parse JSON response');
     }

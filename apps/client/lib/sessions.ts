@@ -2,6 +2,7 @@ import { SessionPayload } from '@repo/shared/schema';
 import { cookies } from 'next/headers';
 import { jwtVerify, decodeJwt } from 'jose';
 import 'server-only';
+import path from 'path';
 
 const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET);
 

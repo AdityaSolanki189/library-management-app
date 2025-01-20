@@ -9,13 +9,15 @@ export async function getUser() {
     if (!session) {
         return null;
     }
+
     try {
-        const response = await fetch(`${apiUrl}/auth/me`, {
+        const response = await fetch(`${apiUrl}/api/user`, {
             method: 'GET',
             headers: {
-                Authorization: session.accessToken,
+                Authorization: `Bearer ${session.accessToken}`,
             },
         });
+
         if (!response.ok) {
             const errorData = await response.json();
             throw new Error(errorData.message || 'Failed to fetch user data.');
@@ -24,7 +26,7 @@ export async function getUser() {
         const user = await response.json();
         return user;
     } catch (error) {
-        console.error('Error fetching user data:', error);
+        // console.error('Error fetching user data:', error);
         return null;
     }
 }
