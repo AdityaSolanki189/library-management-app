@@ -1,0 +1,21 @@
+meta {
+  name: Update a Book
+  type: http
+  seq: 5
+}
+
+patch {
+  url: http://localhost:4000/api/book/:id
+  body: json
+  auth: none
+}
+
+params:path {
+  id: 23fe969b-028a-4353-a3c3-d120ad1c5c19
+}
+
+body:json {
+  {
+    "genre": "Fiction"
+  }
+}

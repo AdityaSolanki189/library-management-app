@@ -8,6 +8,13 @@
       "when": 1737202177892,
       "tag": "0000_left_lockheed",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1737360563034,
+      "tag": "0001_chilly_night_thrasher",
+      "breakpoints": true
     }
   ]
 }
