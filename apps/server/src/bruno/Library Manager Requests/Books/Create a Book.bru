@@ -1,0 +1,35 @@
+meta {
+  name: Create a Book
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:4000/api/book/create
+  body: json
+  auth: none
+}
+
+headers {
+  Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI0OWZkY2E0NS1lMWJhLTRlMmItOWNkNS02OGUxMDJhMjBiODMiLCJpYXQiOjE3MzczNjk5NjIsImV4cCI6MTczNzM3MDU2Mn0.lAoJTrkrsTVksHG3IMAGn1iOoJEx4wXRqBwwRQkMicM
+}
+
+body:json {
+  {
+    "title": "The Midnight Chronicles: Shadows of Eternity",
+    "description": "In a world where time bends and reality shifts, a young archaeologist discovers an ancient artifact that holds the key to humanity's forgotten past. As she delves deeper into its mysteries, she uncovers a truth that could reshape the future of civilization.",
+    "author": "Alexandra J. Richardson",
+    "genre": "Science Fiction",
+    "rating": 9,
+    "coverUrl": "https://example.com/book-covers/midnight-chronicles.jpg",
+    "videoUrl": "https://example.com/book-trailers/midnight-chronicles-trailer.mp4",
+    "coverColor": "#1E90FF",
+    "totalCopies": 50,
+    "availableCopies": 45,
+    "summary": "Set in the year 2157, 'The Midnight Chronicles' follows Dr. Sarah Chen, a brilliant archaeologist who unearths a mysterious device in the ruins of an ancient civilization. As she works to decode its secrets, she finds herself caught in a race against time to prevent a catastrophic event that could rewrite human history. This thrilling adventure combines cutting-edge science with ancient mysteries, exploring themes of destiny, choice, and the price of knowledge."
+  }
+}
+
+docs {
+  User has to be a ADMIN.
+}

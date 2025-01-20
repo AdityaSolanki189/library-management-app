@@ -1,4 +1,8 @@
-import { addBook, checkBookExistence } from '../services/book-services';
+import {
+    addBook,
+    checkBookExistence,
+    getAllBooks,
+} from '../services/book-services';
 import { createHandler } from '../utils/create';
 import { addBookSchema } from '@repo/shared/schema';
 import { BackendError } from '../utils/errors';
@@ -23,3 +27,9 @@ export const handleCreateBook = createHandler(
         res.status(201).json(newBook);
     },
 );
+
+export const handleGetAllBooks = createHandler(async (_req, res) => {
+    const allBooks = await getAllBooks();
+
+    res.status(200).json(allBooks);
+});

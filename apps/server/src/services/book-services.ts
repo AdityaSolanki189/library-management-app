@@ -1,7 +1,7 @@
-import { eq } from 'drizzle-orm';
-import { Book, books } from '../schema/book';
-import { db } from '../utils/db';
 import { addBookSchemaPayload } from '@repo/shared/schema';
+import { desc, eq } from 'drizzle-orm';
+import { books } from '../schema/book';
+import { db } from '../utils/db';
 import { BackendError } from '../utils/errors';
 
 export async function checkBookExistence(title: string, author: string) {
@@ -56,4 +56,23 @@ export async function addBook(book: addBookSchemaPayload) {
     }
 
     return { book: newBook, success: true };
+}
+
+export async function getAllBooks() {
+    // Fetch all books, sort by createdAt in descending order
+    const allBooks = await db
+        .select()
+        .from(books)
+        .orderBy(desc(books.createdAt));
+
+    if(!allBooks) {
+        throw new BackendError('INTERNAL_ERROR', {
+            message: 'Failed to fetch books',
+        });
+    }
+
+    return {
+        books: allBooks,
+        success: true,
+    };
 }
