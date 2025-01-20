@@ -23,3 +23,19 @@ export type addBookSchemaPayload = z.infer<typeof addBookSchema>;
 export const updateBookSchema = addBookSchema.partial();
 
 export type updateBookSchemaPayload = z.infer<typeof updateBookSchema>;
+
+export interface Book {
+    id: number;
+    title: string;
+    description: string;
+    author: string;
+    genre: string;
+    rating: number;
+    coverUrl: string;
+    videoUrl: string;
+    coverColor: string;
+    totalCopies: number;
+    availableCopies: number;
+    summary: string;
+    createdAt: Date;
+}

@@ -7,7 +7,8 @@ import {
     signUpSchemaPayload,
 } from '@repo/shared/schema';
 import { apiUrl } from '../config';
-import { createSession } from '../lib/sessions';
+import { createSession, deleteSession } from '../lib/sessions';
+import { redirect } from 'next/navigation';
 
 export const signUpWithCredentials = async (params: signUpSchemaPayload) => {
     const { fullName, email, universityId, universityCard, password } = params;
@@ -97,3 +98,9 @@ const handleSignInResponse = async (response: Response) => {
         throw new Error('Failed to parse JSON response');
     }
 };
+
+export async function signout() {
+    deleteSession();
+
+    redirect('/signin');
+}

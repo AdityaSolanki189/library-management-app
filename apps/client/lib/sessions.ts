@@ -1,3 +1,5 @@
+"use server";
+
 import { SessionPayload } from '@repo/shared/schema';
 import { decodeJwt, jwtVerify } from 'jose';
 import { cookies } from 'next/headers';

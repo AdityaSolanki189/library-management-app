@@ -1,45 +1,49 @@
-import React from 'react';
-import Image from 'next/image';
+import { Book } from '@repo/shared/schema';
 import star from '@repo/ui/icons/star.svg';
+import Image from 'next/image';
 
-const BookOverview = () => {
+interface BookOverviewProps {
+    latestBook: Book;
+}
+
+const BookOverview = ({ latestBook } : BookOverviewProps) => {
     return (
         <section className="book-overview">
             <div className="flex flex-1 flex-col gap-5">
-                <h1>The Long Book Title </h1>
+                <h1>{latestBook.title} </h1>
 
                 <div className="book-info">
                     <p>
                         By{' '}
                         <span className="font-semibold text-light-200">
-                            Aditya Solanki
+                            {latestBook.author}
                         </span>
                     </p>
 
                     <p>
-                        Category{' '}
+                        Genre{' '}
                         <span className="font-semibold text-light-200">
-                            Adventure
+                            {latestBook.genre}
                         </span>
                     </p>
 
                     <div className="flex flex-row gap-1">
                         <Image src={star} alt="star" width={22} height={22} />
-                        <p>9.8</p>
+                        <p>{latestBook.rating}</p>
                     </div>
                 </div>
 
                 <div className="book-copies">
                     <p>
-                        Total Books <span>20</span>
+                        Total Books <span>{latestBook.totalCopies}</span>
                     </p>
 
                     <p>
-                        Available Books <span>3</span>
+                        Available Books <span>{latestBook.availableCopies}</span>
                     </p>
                 </div>
 
-                <p className="book-description">Craaazzzy crazy description</p>
+                <p className="book-description">{latestBook.description}</p>
                 {/* 
                 {user && (
                     <BorrowBook
@@ -55,15 +59,15 @@ const BookOverview = () => {
                     <BookCover
                         variant="wide"
                         className="z-10"
-                        coverColor={coverColor}
-                        coverImage={coverUrl}
+                        coverColor={latestBook.coverColor}
+                        coverImage={latestBook.coverUrl}
                     />
 
                     <div className="absolute left-16 top-10 rotate-12 opacity-40 max-sm:hidden">
                         <BookCover
                             variant="wide"
-                            coverColor={coverColor}
-                            coverImage={coverUrl}
+                            coverColor={latestBook.coverColor}
+                            coverImage={latestBook.coverUrl}
                         />
                     </div>
                 </div>
