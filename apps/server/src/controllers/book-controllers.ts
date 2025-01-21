@@ -1,3 +1,4 @@
+import { addBookSchema, updateBookSchema } from '@repo/shared/schema';
 import {
     addBook,
     checkBookExistence,
@@ -8,9 +9,7 @@ import {
     updateBook,
 } from '../services/book-services';
 import { createHandler } from '../utils/create';
-import { addBookSchema, updateBookSchema } from '@repo/shared/schema';
 import { BackendError } from '../utils/errors';
-import { get } from 'http';
 
 export const handleCreateBook = createHandler(
     addBookSchema,

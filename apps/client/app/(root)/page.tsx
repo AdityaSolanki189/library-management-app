@@ -25,7 +25,7 @@ export default function Home() {
                 <BookOverview latestBook={latestBooks[0]!} />
             )}
 
-            <BookList title='Latest Books' books={latestBooks} containerClassName="mt-16"/>
+            <BookList title='Latest Books' books={latestBooks} containerClassName="mt-12"/>
         </>
     );
 }

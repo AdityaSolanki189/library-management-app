@@ -9,7 +9,7 @@ interface BookOverviewProps {
 const BookOverview = ({ latestBook } : BookOverviewProps) => {
     return (
         <section className="book-overview">
-            <div className="flex flex-1 flex-col gap-5">
+            <div className="flex flex-1 flex-col gap-4">
                 <h1>{latestBook.title} </h1>
 
                 <div className="book-info">

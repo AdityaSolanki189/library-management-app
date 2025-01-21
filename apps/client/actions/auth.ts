@@ -102,5 +102,5 @@ const handleSignInResponse = async (response: Response) => {
 export async function signout() {
     deleteSession();
 
-    redirect('/signin');
+    redirect('/sign-in');
 }

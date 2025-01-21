@@ -5,6 +5,7 @@ import { cn } from '@repo/ui/global.css';
 import Image from 'next/image';
 import { Button } from '@repo/ui/button';
 import { Book } from '@repo/shared/schema';
+import calendar from '@repo/ui/icons/calendar.svg';
 
 const BookCard = ({
     id,
@@ -31,7 +32,7 @@ const BookCard = ({
                 <div className="mt-3 w-full">
                     <div className="book-loaned">
                         <Image
-                            src="/icons/calendar.svg"
+                            src={calendar}
                             alt="calendar"
                             width={18}
                             height={18}
