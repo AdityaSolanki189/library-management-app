@@ -21,6 +21,7 @@
     "dependencies": {
         "@hookform/resolvers": "^3.10.0",
         "@radix-ui/react-label": "^2.1.1",
+        "@radix-ui/react-progress": "^1.1.1",
         "@radix-ui/react-slot": "^1.1.1",
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
@@ -50,7 +51,8 @@
         "./label": "./src/components/ui/label.tsx",
         "./toaster": "./src/components/ui/toaster.tsx",
         "./sonner": "./src/components/ui/sonner.tsx",
-        "./skeleton": "./src/components/ui/skeleton.tsx"
+        "./skeleton": "./src/components/ui/skeleton.tsx",
+        "./progress": "./src/components/ui/progress.tsx"
     },
     "type": "module"
 }

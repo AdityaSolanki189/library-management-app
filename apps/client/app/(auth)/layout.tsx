@@ -6,19 +6,21 @@ import { ReactNode } from 'react';
 import { getUser } from '../../actions/user';
 import ClientToast from '../../components/ClientToast'; // New client component
 
-const Layout = async ({ children }: { children: ReactNode }) => {
-    let error = null;
+const AuthLayout = async ({ children }: { children: ReactNode }) => {
+    // let error = null;
 
-    const session = await getUser();
-    if (session) {
-        redirect('/');
-    } else {
-        error = 'You have been Signed Out.';
-    }
+    // const session = await getUser();
+    // console.log('session at dashboard layout', session);
+
+    // if (session) {
+    //     redirect('/');
+    // } else {
+    //     error = 'You have been Signed Out.';
+    // }
 
     return (
         <main className="auth-container">
-            <ClientToast error={error} />
+            {/* <ClientToast error={error} /> */}
             <section className="auth-form">
                 <div className="auth-box">
                     <div className="flex flex-row gap-3">
@@ -45,4 +47,4 @@ const Layout = async ({ children }: { children: ReactNode }) => {
     );
 };
 
-export default Layout;
+export default AuthLayout;

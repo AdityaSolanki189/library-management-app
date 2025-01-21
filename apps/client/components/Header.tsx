@@ -23,10 +23,10 @@ const Header = () => {
             <ul className="flex flex-row items-center gap-8">
                 <li>
                     <Link
-                        href={'/library'}
+                        href={'/dashboard/library'}
                         className={cn(
                             'text-base cursor-pointer capitalize hover:underline',
-                            pathname === '/library'
+                            pathname === '/dashboard/library'
                                 ? 'text-light-200'
                                 : 'text-light-100',
                         )}
@@ -36,10 +36,10 @@ const Header = () => {
                 </li>
                 <li>
                     <Link
-                        href={'/authors'}
+                        href={'/dashboard/authors'}
                         className={cn(
                             'text-base cursor-pointer capitalize hover:underline',
-                            pathname === '/authors'
+                            pathname === '/dashboard/authors'
                                 ? 'text-light-200'
                                 : 'text-light-100',
                         )}
@@ -49,10 +49,10 @@ const Header = () => {
                 </li>
                 <li>
                     <Link
-                        href={'/genres'}
+                        href={'/dashboard/genres'}
                         className={cn(
                             'text-base cursor-pointer capitalize hover:underline',
-                            pathname === '/genres'
+                            pathname === '/dashboard/genres'
                                 ? 'text-light-200'
                                 : 'text-light-100',
                         )}

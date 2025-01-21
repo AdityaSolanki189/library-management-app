@@ -16,7 +16,7 @@ const BookCard = ({
 }: Book) => (
     <li className={cn(id && 'xs:w-52 w-full')}>
         <Link
-            href={`/books/${id}`}
+            href={`/dashboard/books/${id}`}
             className={cn(id && 'w-full flex flex-col items-center')}
         >
             <BookCover coverColor={coverColor} coverImage={coverUrl} />
@@ -41,7 +41,7 @@ const BookCard = ({
                         <p className="text-light-100">11 days left to return</p>
                     </div>
 
-                    <Button className="book-btn">Download receipt</Button>
+                    {/* <Button className="book-btn">Download receipt</Button> */}
                 </div>
             )}
         </Link>
