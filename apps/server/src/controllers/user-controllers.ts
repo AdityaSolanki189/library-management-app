@@ -35,7 +35,7 @@ export const handleUserLogin = createHandler(signInSchema, async (req, res) => {
     });
     if (!matchPassword) throw new BackendError('INVALID_PASSWORD');
 
-    const token = generateToken(user.id);
+    const token = generateToken(user.id, user.isAdmin);
     res.status(200).json({ token });
 });
 
@@ -60,7 +60,7 @@ export const handleAddUser = createHandler(signUpSchema, async (req, res) => {
     );
 
     if (status !== 200) {
-        await deleteUser(addedUser.email);
+        // await deleteUser(addedUser.email);
         throw new BackendError('INTERNAL_ERROR', {
             message: 'Failed to signup user',
         });

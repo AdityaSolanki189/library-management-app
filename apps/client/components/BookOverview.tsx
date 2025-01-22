@@ -28,7 +28,7 @@ const BookOverview = ({ latestBook } : BookOverviewProps) => {
                     </p>
 
                     <div className="flex flex-row gap-1">
-                        <Image src={star} alt="star" width={22} height={22} />
+                        <Image src={star} alt="star" width={22} height={22} className='cursor-pointer hover:decoration-primary'/>
                         <p>{latestBook.rating}</p>
                     </div>
                 </div>
