@@ -91,12 +91,10 @@ const handleSignInResponse = async (response: Response) => {
 
         const isAdmin = await isValidToken(token);
 
-        console.log('isAdmin:', isAdmin);
         if(!isAdmin) {
             throw new Error('User is not an Admin');
         }
 
-        console.log('Token:', token);
         await createSession({
             accessToken: token,
         });
@@ -106,7 +104,6 @@ const handleSignInResponse = async (response: Response) => {
         }
     } catch (error: any) {
         // throw new Error('Failed to parse JSON response');
-        console.log('Error', error.message);
         return {
             status: 401,    // Unauthorized
             error: error.message,

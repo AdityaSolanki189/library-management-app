@@ -7,11 +7,10 @@ import { cn, getInitials } from '@repo/ui/utils';
 import { usePathname } from 'next/navigation';
 import { Avatar, AvatarFallback } from '@repo/ui/avatar';
 import { User } from '../actions/user';
-import logo from "@repo/ui/icons/logo.svg"
+import logo from "@repo/ui/icons/admin/logo.svg"
 
 const Sidebar = ({ user }: { user: User }) => {
     const pathname = usePathname();
-
     return (
         <div className="admin-sidebar">
             <div>
@@ -69,7 +68,7 @@ const Sidebar = ({ user }: { user: User }) => {
 
             <div className="user">
                 <Avatar>
-                    <AvatarFallback className="bg-amber-100">
+                    <AvatarFallback className="bg-amber-100 rounded-full size-11">
                         {getInitials(user?.name || 'IN')}
                     </AvatarFallback>
                 </Avatar>

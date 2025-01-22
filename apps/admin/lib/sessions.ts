@@ -72,7 +72,6 @@ export async function isValidToken(token: string): Promise<boolean> {
         }
         // Check if the user is a Admin User
         if(decoded.isAdmin !== true){
-            console.log('User is not an Admin');
             await deleteSession();
             return false;
         }

@@ -1,26 +1,32 @@
+import home from "@repo/ui/icons/admin/home.svg"
+import users from "@repo/ui/icons/admin/users.svg"
+import book from "@repo/ui/icons/admin/book.svg"
+import bookmark from "@repo/ui/icons/admin/bookmark.svg"
+import user from "@repo/ui/icons/admin/user.svg"
+
 export const adminSideBarLinks = [
     {
-        img: '/icons/admin/home.svg',
+        img: home,
         route: '/admin',
         text: 'Home',
     },
     {
-        img: '/icons/admin/users.svg',
+        img: users,
         route: '/admin/users',
         text: 'All Users',
     },
     {
-        img: '/icons/admin/book.svg',
+        img: book,
         route: '/admin/books',
         text: 'All Books',
     },
     {
-        img: '/icons/admin/bookmark.svg',
+        img: bookmark,
         route: '/admin/book-requests',
         text: 'Borrow Requests',
     },
     {
-        img: '/icons/admin/user.svg',
+        img: user,
         route: '/admin/account-requests',
         text: 'Account Requests',
     },
