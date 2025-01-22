@@ -3,7 +3,7 @@ import React from 'react'
 const page = () => {
   return (
     <div>
-      create a new book my G
+      Book Requests Page
     </div>
   )
 }

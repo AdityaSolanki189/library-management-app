@@ -1,11 +1,9 @@
-import React from 'react';
+import { Book } from '@repo/shared/schema';
+import { cn } from '@repo/ui/global.css';
+import calendar from '@repo/ui/icons/calendar.svg';
+import Image from 'next/image';
 import Link from 'next/link';
 import BookCover from './BookCover';
-import { cn } from '@repo/ui/global.css';
-import Image from 'next/image';
-import { Button } from '@repo/ui/button';
-import { Book } from '@repo/shared/schema';
-import calendar from '@repo/ui/icons/calendar.svg';
 
 const BookCard = ({
     id,

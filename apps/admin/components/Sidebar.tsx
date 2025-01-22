@@ -1,13 +1,14 @@
 'use client';
 
-import Image from 'next/image';
-import { adminSideBarLinks } from '../lib/constants';
-import Link from 'next/link';
-import { cn, getInitials } from '@repo/ui/utils';
-import { usePathname } from 'next/navigation';
 import { Avatar, AvatarFallback } from '@repo/ui/avatar';
+import logo from "@repo/ui/icons/admin/logo.svg";
+import { cn, getInitials } from '@repo/ui/utils';
+import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { User } from '../actions/user';
-import logo from "@repo/ui/icons/admin/logo.svg"
+import { adminSideBarLinks } from '../lib/constants';
+import SignOutButton from './SignOutButton';
 
 const Sidebar = ({ user }: { user: User }) => {
     const pathname = usePathname();
@@ -63,6 +64,10 @@ const Sidebar = ({ user }: { user: User }) => {
                             </Link>
                         );
                     })}
+                </div>
+
+                <div className='mt-10 border-t border-red-400 border-dashed pt-4'>
+                    <SignOutButton />
                 </div>
             </div>
 

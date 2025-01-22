@@ -1,8 +1,9 @@
 import { ReactNode } from 'react';
 
-import { getUser, User } from '../../actions/user';
+import { getUser } from '../../actions/user';
 import Header from '../../components/Header';
 import Sidebar from '../../components/Sidebar';
+import "../styles.css";
 
 const Layout = async ({ children }: { children: ReactNode }) => {
     const user = await getUser();
