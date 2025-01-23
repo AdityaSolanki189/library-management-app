@@ -8,19 +8,19 @@ import BookCardActions from './BookCardActions';
 export const columns: ColumnDef<Book>[] = [
     {
         accessorKey: 'title',
-        header: 'Book Title',
+        header: () => <div className='text-left font-semibold bg-slate-200 p-2'>Book Title</div>,
     },
     {
         accessorKey: 'author',
-        header: 'Author',
+        header: () => <div className='text-left font-semibold bg-slate-200 p-2'>Author</div>,
     },
     {
-        header: 'Genre',
         accessorKey: 'genre',
+        header: () => <div className='text-left font-semibold bg-slate-200 p-2'>Genre</div>,
     },
     {
-        header: 'Date Created',
         accessorKey: 'createdAt',
+        header: () => <div className='text-left font-semibold bg-slate-200 p-2'>Date Created</div>,
         cell: ({ row }) => {
             const formattedDate = format(row.getValue('createdAt'), 'MM/dd/yyyy');
             return (
@@ -31,7 +31,8 @@ export const columns: ColumnDef<Book>[] = [
         },
     },
     {
-        header: 'Actions',
+        accessorKey: 'id',
+        header: () => <div className='text-left font-semibold bg-slate-200 p-2'>Actions</div>,
         cell: ({ row }) => {
             return (
                 <div>

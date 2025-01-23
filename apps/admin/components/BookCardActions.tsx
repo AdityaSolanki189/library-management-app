@@ -1,15 +1,19 @@
 import { Book } from '@repo/shared/schema';
 import {
     AlertDialog,
-    AlertDialogCancel,
-    AlertDialogFooter,
-    AlertDialogContent,
     AlertDialogAction,
-    AlertDialogTitle,
-    AlertDialogHeader,
+    AlertDialogCancel,
+    AlertDialogContent,
     AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle
 } from '@repo/ui/alert-dialog';
+import { Button } from '@repo/ui/button';
+import editIcon from '@repo/ui/icons/admin/edit.svg';
+import trashIcon from '@repo/ui/icons/admin/trash.svg';
 import { toast } from '@repo/ui/sonner';
+import Image from 'next/image';
 import React from 'react';
 import { deleteBookById } from '../actions/book';
 
@@ -21,7 +25,6 @@ const BookCardActions = ({ book }: BookCardActionsProps) => {
     const [isConfirmOpen, setIsConfirmOpen] = React.useState(false);
 
     const handleDeleteBook = async () => {
-        // Implement delete book functionality
         const result = await deleteBookById(book.id);
 
         if (!result.success) {
@@ -32,6 +35,7 @@ const BookCardActions = ({ book }: BookCardActionsProps) => {
             toast('Success', {
                 description: 'Book deleted successfully',
             });
+            setIsConfirmOpen(false);
         }
     };
 
@@ -58,14 +62,21 @@ const BookCardActions = ({ book }: BookCardActionsProps) => {
                 </AlertDialogContent>
             </AlertDialog>
 
-            <div className="flex flex-col space-x-3">
-                <button
+            <div className="flex  space-x-3">
+                <Button className="text-primary-admin">
+                    <Image src={editIcon} alt="edit" width={20} height={20} />
+                </Button>
+                <Button
                     onClick={() => setIsConfirmOpen(true)}
                     className="text-red-500"
                 >
-                    Delete
-                </button>
-                <button className="text-primary-admin">Edit</button>
+                    <Image
+                        src={trashIcon}
+                        alt="delete"
+                        width={20}
+                        height={20}
+                    />
+                </Button>
             </div>
         </>
     );
