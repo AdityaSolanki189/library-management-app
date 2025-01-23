@@ -4,9 +4,8 @@ import { Button } from '@repo/ui/button';
 import logout from '@repo/ui/icons/logout.svg';
 import Image from 'next/image';
 import { signout } from '../actions/auth';
-import { type FC } from 'react';
 
-const SignOutButton: FC = () => {
+function SignOutButton(){
     const handleOnSignOut = async () => {
         await signout();
     };

@@ -56,6 +56,7 @@
         "./sonner": "./src/components/ui/sonner.tsx",
         "./skeleton": "./src/components/ui/skeleton.tsx",
         "./progress": "./src/components/ui/progress.tsx",
-        "./avatar": "./src/components/ui/avatar.tsx"
+        "./avatar": "./src/components/ui/avatar.tsx",
+        "./textarea": "./src/components/ui/textarea.tsx"
     }
 }
