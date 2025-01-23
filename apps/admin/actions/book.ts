@@ -1,7 +1,6 @@
 import { addBookSchema, addBookSchemaPayload } from '@repo/shared/schema';
 import { apiUrl } from '../config';
 import { getSession } from '../lib/sessions';
-import { error } from 'console';
 
 export const createBook = async (params: addBookSchemaPayload) => {
     const {
@@ -65,3 +64,58 @@ export const createBook = async (params: addBookSchemaPayload) => {
         };
     }
 };
+
+export const getAllBooks = async () => {
+    const session = await getSession();
+    try {
+        const response = await fetch(`${apiUrl}/api/book`, {
+            method: 'GET',
+            headers: {
+                Authorization: `Bearer ${session?.accessToken}`,
+            },
+        });
+
+        if (!response.ok) {
+            const responseData = await response.json();
+            return { success: false, error: responseData.message };
+        }
+        const responseData = await response.json();
+        return {
+            success: responseData.success,
+            books: responseData.books,
+        };
+    } catch (error: any) {
+        console.error('Failed to get all books:', error);
+        return {
+            success: false,
+            error: error.message,
+        };
+    }
+};
+
+export const deleteBookById = async (bookId: string) => {
+    const session = await getSession();
+    try {
+        const response = await fetch(`${apiUrl}/api/book/${bookId}`, {
+            method: 'DELETE',
+            headers: {
+                Authorization: `Bearer ${session?.accessToken}`,
+            },
+        });
+
+        if (!response.ok) {
+            const responseData = await response.json();
+            return { success: false, error: responseData.message };
+        }
+        const responseData = await response.json();
+        return {
+            success: responseData.success,
+        };
+    } catch (error: any) {
+        console.error('Failed to delete book:', error);
+        return {
+            success: false,
+            error: error.message,
+        };
+    }
+}

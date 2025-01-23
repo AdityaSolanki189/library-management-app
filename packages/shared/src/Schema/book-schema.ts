@@ -25,7 +25,7 @@ export const updateBookSchema = addBookSchema.partial();
 export type updateBookSchemaPayload = z.infer<typeof updateBookSchema>;
 
 export interface Book {
-    id: number;
+    id: string;
     title: string;
     description: string;
     author: string;
