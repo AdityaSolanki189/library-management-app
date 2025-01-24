@@ -1,15 +1,17 @@
 'use client';
 
 import { User } from '@repo/shared/schema';
-import { ColumnDef } from '@tanstack/react-table';
-import { format } from 'date-fns';
-import UserCardActions from './UserCardActions';
 import { Avatar, AvatarFallback } from '@repo/ui/avatar';
 import { getInitials } from '@repo/ui/global.css';
+import { ColumnDef } from '@tanstack/react-table';
+import { format } from 'date-fns';
+import Image from 'next/image';
+import Link from 'next/link';
+import UserCardActions from './UserCardActions';
+import linkLogo from '@repo/ui/icons/admin/link.svg';
 
 export const columns: ColumnDef<User>[] = [
     {
-        // Avatar, Name and Email
         accessorKey: 'fullName',
         header: () => (
             <div className="text-left font-semibold bg-slate-200 p-2">
@@ -19,7 +21,7 @@ export const columns: ColumnDef<User>[] = [
         cell: ({ row }) => {
             const user = row.original;
             return (
-                <div className="user flex gap-2 my-2">
+                <div className="user flex gap-2 ml-2 my-2">
                     <Avatar>
                         <AvatarFallback className="bg-amber-100 rounded-full size-11">
                             {getInitials(user?.fullName || 'IN')}
@@ -42,7 +44,6 @@ export const columns: ColumnDef<User>[] = [
         },
     },
     {
-        // Date Joined
         accessorKey: 'createdAt',
         header: () => (
             <div className="text-left font-semibold bg-slate-200 p-2">
@@ -51,11 +52,10 @@ export const columns: ColumnDef<User>[] = [
         ),
         cell: ({ row }) => {
             const formattedDate = format(row.getValue('createdAt'), 'PPP');
-            return <div>{formattedDate}</div>;
+            return <div className="ml-2">{formattedDate}</div>;
         },
     },
     {
-        // Role
         accessorKey: 'isAdmin',
         header: () => (
             <div className="text-left font-semibold bg-slate-200 p-2">Role</div>
@@ -63,7 +63,7 @@ export const columns: ColumnDef<User>[] = [
         cell: ({ row }): JSX.Element => {
             const isAdmin = row.getValue('isAdmin');
             return (
-                <div className="flex">
+                <div className="flex ml-2">
                     <div
                         className={`px-2 py-1 rounded-full ${isAdmin ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600'} font-ibm-plex-sans text-sm`}
                     >
@@ -74,16 +74,40 @@ export const columns: ColumnDef<User>[] = [
         },
     },
     {
-        // UniversityId
         accessorKey: 'universityId',
         header: () => (
             <div className="text-left font-semibold bg-slate-200 p-2">
                 University ID
             </div>
         ),
+        cell: ({ row }) => {
+            return <div className="ml-2">{row.getValue('universityId')}</div>;
+        },
     },
     {
-        // Actions
+        accessorKey: 'universityCard',
+        header: () => (
+            <div className="text-left font-semibold bg-slate-200 p-2">
+                University Card
+            </div>
+        ),
+        cell: ({ row }) => {
+            return (
+                <Link href={''} className='flex gap-2'>
+                    <span className="text-blue-600 ml-2 font-semibold">
+                        View ID Card
+                    </span>
+                    <Image
+                        src={linkLogo}
+                        alt="University Card"
+                        width={16}
+                        height={16}
+                    />
+                </Link>
+            );
+        },
+    },
+    {
         accessorKey: 'id',
         header: () => (
             <div className="text-left font-semibold bg-slate-200 p-2">
@@ -92,7 +116,7 @@ export const columns: ColumnDef<User>[] = [
         ),
         cell: ({ row }) => {
             return (
-                <div>
+                <div className="flex justify-center">
                     <UserCardActions user={row.original} />
                 </div>
             );
