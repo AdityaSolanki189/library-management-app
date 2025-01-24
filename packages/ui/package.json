@@ -24,6 +24,7 @@
         "@hookform/resolvers": "^3.10.0",
         "@radix-ui/react-alert-dialog": "^1.1.5",
         "@radix-ui/react-avatar": "^1.1.2",
+        "@radix-ui/react-dialog": "^1.1.5",
         "@radix-ui/react-label": "^2.1.1",
         "@radix-ui/react-progress": "^1.1.1",
         "@radix-ui/react-slot": "^1.1.1",
@@ -62,6 +63,8 @@
         "./textarea": "./src/components/ui/textarea.tsx",
         "./table": "./src/components/ui/table.tsx",
         "./alert-dialog": "./src/components/ui/alert-dialog.tsx",
-        "./data-table": "./src/components/ui/data-table.tsx"
-    }
+        "./data-table": "./src/components/ui/data-table.tsx",
+        "./dialog": "./src/components/ui/dialog.tsx"
+    },
+    "type": "module"
 }

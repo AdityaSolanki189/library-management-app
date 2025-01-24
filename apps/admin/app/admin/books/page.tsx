@@ -7,7 +7,7 @@ import { toast } from '@repo/ui/sonner';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { getAllBooks } from '../../../actions/book';
-import { columns } from '../../../components/Columns';
+import { columns } from '../../../components/BookColumns';
 import Loader from '../../../components/Loader';
 
 const Page = () => {

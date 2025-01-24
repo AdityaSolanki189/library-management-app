@@ -1,7 +1,14 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { DefaultValues, FieldValues, Path, SubmitHandler, useForm, UseFormReturn } from 'react-hook-form';
+import {
+    DefaultValues,
+    FieldValues,
+    Path,
+    SubmitHandler,
+    useForm,
+    UseFormReturn,
+} from 'react-hook-form';
 import { ZodType } from 'zod';
 
 import { Button } from '@repo/ui/button';
@@ -22,7 +29,7 @@ import ColorPicker from '../components/ColorPicker';
 interface Props<T extends FieldValues> {
     schema: ZodType<T>;
     defaultValues: T;
-    onSubmit: (data: T) => Promise<{ success: boolean; error?: string }>;
+    onSubmit: (data: T, id?: string) => Promise<{ success: boolean; error?: string }>;
     type: 'create' | 'update';
 }
 
@@ -37,22 +44,38 @@ const BookForm = <T extends FieldValues>({
     const form: UseFormReturn<T> = useForm({
         resolver: zodResolver(schema),
         defaultValues: defaultValues as DefaultValues<T>,
-    })
+    });
 
     const handleSubmit: SubmitHandler<T> = async (data) => {
+        if (type === 'create') {
+            const result = await onSubmit(data);
 
-        const result = await onSubmit(data);
+            if (result?.success) {
+                toast('Success', {
+                    description: `Added book successfully`,
+                });
 
-        if (result?.success) {
-            toast('Success', {
-                description: `Added book successfully`,
-            });
+                router.push(`/admin/books`);
+            } else {
+                toast('Error', {
+                    description: result?.error || 'Failed to add book',
+                });
+            }
+        }
+        if (type === 'update') {
+            const result = await onSubmit(data, defaultValues.id);
 
-            router.push(`/admin/books`);
-        } else {
-            toast('Error', {
-                description: result?.error || 'Failed to add book',
-            });
+            if (result?.success) {
+                toast('Success', {
+                    description: `Updated book successfully`,
+                });
+
+                router.push(`/admin/books`);
+            } else {
+                toast('Error', {
+                    description: result?.error || 'Failed to update book',
+                });
+            }
         }
     };
 
@@ -139,7 +162,11 @@ const BookForm = <T extends FieldValues>({
                                     placeholder="Book rating"
                                     {...field}
                                     className="book-form_input"
-                                    onChange={(e) => field.onChange(parseFloat(e.target.value))}
+                                    onChange={(e) =>
+                                        field.onChange(
+                                            parseFloat(e.target.value),
+                                        )
+                                    }
                                 />
                             </FormControl>
                             <FormMessage />
@@ -163,7 +190,11 @@ const BookForm = <T extends FieldValues>({
                                     placeholder="Total copies"
                                     {...field}
                                     className="book-form_input"
-                                    onChange={(e) => field.onChange(parseFloat(e.target.value))}
+                                    onChange={(e) =>
+                                        field.onChange(
+                                            parseFloat(e.target.value),
+                                        )
+                                    }
                                 />
                             </FormControl>
                             <FormMessage />

@@ -17,42 +17,52 @@ export async function getLatestBooks() {
         });
 
         if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.message || 'Failed to fetch books data.');
+            const responseData = await response.json();
+            return {
+                success: false,
+                error: responseData.message,
+            }
         }
 
-        const books = await response.json();
-        return books;
-    } catch (error) {
-        // console.error('Error fetching user data:', error);
-        return null;
+        const responseData = await response.json();
+        return {
+            success: responseData.success,
+            books: responseData.books,
+        }
+    } catch (error: any) {
+        console.error('Error fetching latest books:', error);
+        return {
+            success: false,
+            error: error.message,
+        };
     }
 }
 
-export async function getBookById(id: string) {
+export const getBookById = async (bookId: string) => {
     const session = await getSession();
-
-    if (!session) {
-        return null;
-    }
-
     try {
-        const response = await fetch(`${apiUrl}/api/book/${id}`, {
+        const response = await fetch(`${apiUrl}/api/book/${bookId}`, {
             method: 'GET',
             headers: {
-                Authorization: `Bearer ${session.accessToken}`,
+                Authorization: `Bearer ${session?.accessToken}`,
             },
         });
 
         if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.message || 'Failed to fetch book data.');
+            const responseData = await response.json();
+            return { success: false, error: responseData.message };
         }
-
-        const book = await response.json();
-        return book;
-    } catch (error) {
-        // console.error('Error fetching user data:', error);
-        return null;
+        const responseData = await response.json();
+        console.log(responseData);
+        return {
+            success: responseData.success,
+            book: responseData.book,
+        };
+    } catch (error: any) {
+        console.error('Failed to get book by id:', error);
+        return {
+            success: false,
+            error: error.message,
+        };
     }
-}
+};

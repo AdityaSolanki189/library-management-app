@@ -15,8 +15,8 @@ import {
     TableHead,
     TableHeader,
     TableRow,
-} from './table';
-import { Button } from './button';
+} from './table.js';
+import { Button } from './button.js';
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[];

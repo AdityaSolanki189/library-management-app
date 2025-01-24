@@ -61,7 +61,10 @@ export const handleGetLatestBooks = createHandler(async (_req, res) => {
         });
     }
 
-    res.status(200).json(latestBooks);
+    res.status(200).json({
+        books: latestBooks,
+        success: true,
+    });
 });
 
 export const handleUpdateBookById = createHandler(

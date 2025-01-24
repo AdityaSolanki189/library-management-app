@@ -6,7 +6,7 @@ import { cn, getInitials } from '@repo/ui/utils';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { User } from '../actions/user';
+import { User } from '@repo/shared/schema';
 import { adminSideBarLinks } from '../lib/constants';
 import SignOutButton from './SignOutButton';
 
@@ -74,13 +74,13 @@ const Sidebar = ({ user }: { user: User }) => {
             <div className="user">
                 <Avatar>
                     <AvatarFallback className="bg-amber-100 rounded-full size-11">
-                        {getInitials(user?.name || 'IN')}
+                        {getInitials(user?.fullName || 'IN')}
                     </AvatarFallback>
                 </Avatar>
 
                 <div className="flex flex-col max-md:hidden">
                     <p className="font-semibold text-dark-200">
-                        {user?.name}
+                        {user?.fullName}
                     </p>
                     <p className="text-xs text-light-500">
                         {user?.email}

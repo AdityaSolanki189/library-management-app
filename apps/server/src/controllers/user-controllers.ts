@@ -126,7 +126,7 @@ export const handleGetUser = createHandler(async (_req, res) => {
     res.status(200).json({
         user: {
             id: user.id,
-            name: user.fullName,
+            fullName: user.fullName,
             email: user.email,
             isAdmin: user.isAdmin,
             isVerified: user.isVerified,

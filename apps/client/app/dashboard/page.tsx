@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react';
 import { getLatestBooks } from '../../actions/book';
 import BookList from '../../components/BookList';
 import BookOverview from '../../components/BookOverview';
+import { toast } from '@repo/ui/sonner';
+import Loader from '../../components/Loader';
 
 const delay = (ms: number | undefined) =>
     new Promise((resolve) => setTimeout(resolve, ms));
@@ -17,8 +19,18 @@ export default function Home() {
         const fetchLatestBooks = async () => {
             await delay(1000);
             const newBooks = await getLatestBooks();
-            setLatestBooks(newBooks);
-            setLoading(false);
+            if (newBooks?.success) {
+                toast('Success', {
+                    description: 'Fetched latest books',
+                });
+                setLatestBooks(newBooks.books);
+                setLoading(false);
+            } else {
+                toast('Error', {
+                    description: newBooks?.error,
+                });
+                setLoading(false);
+            }
         };
 
         fetchLatestBooks();
@@ -27,15 +39,7 @@ export default function Home() {
     return (
         <>
             {loading ? (
-                <div className="h-max w-full flex justify-center items-center place-items-center">
-                    <div
-                        className="animate-spin inline-block size-16 border-[3px] border-current border-t-transparent text-primary rounded-full"
-                        role="status"
-                        aria-label="loading"
-                    >
-                        <span className="sr-only">Loading...</span>
-                    </div>
-                </div>
+                <Loader />
             ) : (
                 <>
                     {latestBooks.length > 0 && (

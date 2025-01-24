@@ -93,6 +93,35 @@ export const getAllBooks = async () => {
     }
 };
 
+export const getBookById = async (bookId: string) => {
+    const session = await getSession();
+    try {
+        const response = await fetch(`${apiUrl}/api/book/${bookId}`, {
+            method: 'GET',
+            headers: {
+                Authorization: `Bearer ${session?.accessToken}`,
+            },
+        });
+
+        if (!response.ok) {
+            const responseData = await response.json();
+            return { success: false, error: responseData.message };
+        }
+        const responseData = await response.json();
+        console.log(responseData);
+        return {
+            success: responseData.success,
+            book: responseData.book,
+        };
+    } catch (error: any) {
+        console.error('Failed to get book by id:', error);
+        return {
+            success: false,
+            error: error.message,
+        };
+    }
+};
+
 export const deleteBookById = async (bookId: string) => {
     const session = await getSession();
     try {
@@ -118,4 +147,36 @@ export const deleteBookById = async (bookId: string) => {
             error: error.message,
         };
     }
-}
+};
+
+export const updateBook = async (
+    params: Partial<addBookSchemaPayload>,
+    bookId: string,
+) => {
+    const session = await getSession();
+    try {
+        const response = await fetch(`${apiUrl}/api/book/${bookId}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${session?.accessToken}`,
+            },
+            body: JSON.stringify(params),
+        });
+
+        if (!response.ok) {
+            const responseData = await response.json();
+            return { success: false, error: responseData.message };
+        }
+        const responseData = await response.json();
+        return {
+            success: responseData.success,
+        };
+    } catch (error: any) {
+        console.error('Failed to update book:', error);
+        return {
+            success: false,
+            error: error.message,
+        };
+    }
+};
