@@ -25,7 +25,6 @@ export async function addBook(book: addBookSchemaPayload) {
         videoUrl,
         coverColor,
         totalCopies,
-        availableCopies,
         summary,
     } = book;
 
@@ -41,7 +40,7 @@ export async function addBook(book: addBookSchemaPayload) {
             videoUrl,
             coverColor,
             totalCopies,
-            availableCopies,
+            availableCopies: totalCopies,
             summary,
         })
         .returning({
