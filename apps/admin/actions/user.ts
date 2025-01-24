@@ -65,7 +65,7 @@ export async function deleteUserById(userId: string) {
     const session = await getSession();
 
     try {
-        const response = await fetch(`${apiUrl}/api/admin/user/${userId}`, {
+        const response = await fetch(`${apiUrl}/api/admin/delete/${userId}`, {
             method: 'DELETE',
             headers: {
                 Authorization: `Bearer ${session?.accessToken}`,
@@ -79,7 +79,8 @@ export async function deleteUserById(userId: string) {
 
         const responseData = await response.json();
         return {
-            success: responseData.success,
+            userId: responseData.userId,
+            success: true,
         };
     } catch (error: any) {
         console.error('Failed to delete user:', error);

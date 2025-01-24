@@ -21,7 +21,7 @@ const UserCardActions = ({ user }: UserCardActionsProps) => {
             });
         } else {
             toast('Success', {
-                description: 'User deleted successfully',
+                description: `User with Id: ${result.userId} deleted successfully`,
             });
             setIsConfirmOpen(false);
         }
