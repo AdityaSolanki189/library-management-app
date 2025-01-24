@@ -4,6 +4,7 @@ import {
     getAllVerifiedUsers,
 } from '../services/admin-services';
 import { createHandler } from '../utils/create';
+import { BackendError } from '../utils/errors';
 
 export const handleGetAllVerifiedUsers = createHandler(async (_req, res) => {
     const users = await getAllVerifiedUsers();
@@ -14,8 +15,16 @@ export const handleGetAllVerifiedUsers = createHandler(async (_req, res) => {
 
 export const handleGetAllUsers = createHandler(async (_req, res) => {
     const users = await getAllUsers();
+
+    if (users.length === 0) {
+        throw new BackendError('NOT_FOUND', {
+            message: 'No users found',
+        });
+    }
+
     res.status(200).json({
-        users,
+        users: users,
+        success: true,
     });
 });
 

@@ -31,12 +31,32 @@ export async function getUser() {
     }
 }
 
-export interface User {
-    id: string;
-    name: string;
-    email: string;
-    isAdmin: boolean;
-    isVerified: boolean;
-    createdAt: string;
-}
+export async function getAllUsers() {
+    const session = await getSession();
 
+    try {
+        const response = await fetch(`${apiUrl}/api/admin/all-users`, {
+            method: 'GET',
+            headers: {
+                Authorization: `Bearer ${session?.accessToken}`,
+            },
+        });
+
+        if (!response.ok) {
+            const responseData = await response.json();
+            return { success: false, error: responseData.message };
+        }
+
+        const responseData = await response.json();
+        return {
+            success: responseData.success,
+            users: responseData.users,
+        };
+    } catch (error: any) {
+        console.error('Failed to get all users:', error);
+        return {
+            success: false,
+            error: error.message,
+        };
+    }
+}
