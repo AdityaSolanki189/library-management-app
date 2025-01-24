@@ -6,7 +6,7 @@ import { toast } from '@repo/ui/sonner';
 import Link from 'next/link';
 import { redirect, useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { createBook, getBookById } from '../../../../../actions/book';
+import { getBookById, updateBook } from '../../../../../actions/book';
 import BookForm from '../../../../../components/BookForm';
 import Loader from '../../../../../components/Loader';
 
@@ -32,7 +32,6 @@ const page = () => {
                 });
                 redirect('/admin/books');
             }
-            console.log(bookDetails);
             setBookDetails(bookDetails.book);
             setLoading(false);
         };
@@ -55,9 +54,9 @@ const page = () => {
                             type="update"
                             schema={addBookSchema}
                             defaultValues={
-                                bookDetails as Omit<Book, 'id' | 'createdAt'>
+                                bookDetails as Omit<Book, 'createdAt'>
                             }
-                            onSubmit={createBook}
+                            onSubmit={(data) => updateBook(data, id as string)}
                         />
                     ) : (
                         <p>Book details not available.</p> // Fallback message

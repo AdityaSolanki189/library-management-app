@@ -55,13 +55,16 @@ export const handleGetBookById = createHandler(async (_req, res) => {
 export const handleGetLatestBooks = createHandler(async (_req, res) => {    
     const latestBooks = await getLatestBooks();
 
-    if(latestBooks.books.length === 0) {
+    if(latestBooks.length === 0) {
         throw new BackendError('NOT_FOUND', {
             message: 'No books found',
         });
     }
 
-    res.status(200).json(latestBooks);
+    res.status(200).json({
+        books: latestBooks,
+        success: true,
+    });
 });
 
 export const handleUpdateBookById = createHandler(

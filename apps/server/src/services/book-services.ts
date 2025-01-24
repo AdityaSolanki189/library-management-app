@@ -85,10 +85,7 @@ export async function getLatestBooks() {
         .orderBy(desc(books.createdAt))
         .limit(5);
 
-    return {
-        books: latestBooks,
-        success: true,
-    };
+    return latestBooks;
 }
 
 export async function getBookById(id: string) {

@@ -148,3 +148,35 @@ export const deleteBookById = async (bookId: string) => {
         };
     }
 };
+
+export const updateBook = async (
+    params: Partial<addBookSchemaPayload>,
+    bookId: string,
+) => {
+    const session = await getSession();
+    try {
+        const response = await fetch(`${apiUrl}/api/book/${bookId}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${session?.accessToken}`,
+            },
+            body: JSON.stringify(params),
+        });
+
+        if (!response.ok) {
+            const responseData = await response.json();
+            return { success: false, error: responseData.message };
+        }
+        const responseData = await response.json();
+        return {
+            success: responseData.success,
+        };
+    } catch (error: any) {
+        console.error('Failed to update book:', error);
+        return {
+            success: false,
+            error: error.message,
+        };
+    }
+};
