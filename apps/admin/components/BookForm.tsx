@@ -46,6 +46,8 @@ const BookForm = <T extends FieldValues>({
         defaultValues: defaultValues as DefaultValues<T>,
     });
 
+    console.log('formValues', defaultValues);
+
     const handleSubmit: SubmitHandler<T> = async (data) => {
         if (type === 'create') {
             const result = await onSubmit(data);

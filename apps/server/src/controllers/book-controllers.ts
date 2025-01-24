@@ -55,7 +55,7 @@ export const handleGetBookById = createHandler(async (_req, res) => {
 export const handleGetLatestBooks = createHandler(async (_req, res) => {    
     const latestBooks = await getLatestBooks();
 
-    if(latestBooks.length === 0) {
+    if(latestBooks.books.length === 0) {
         throw new BackendError('NOT_FOUND', {
             message: 'No books found',
         });
