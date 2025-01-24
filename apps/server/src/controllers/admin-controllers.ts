@@ -3,7 +3,7 @@ import {
     getAllUsers,
     getAllVerifiedUsers,
 } from '../services/admin-services';
-import { deleteUser, deleteUserById } from '../services/user-services';
+import { addUser, deleteUserById } from '../services/user-services';
 import { createHandler } from '../utils/create';
 import { BackendError } from '../utils/errors';
 
