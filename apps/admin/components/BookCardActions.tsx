@@ -7,13 +7,14 @@ import {
     AlertDialogDescription,
     AlertDialogFooter,
     AlertDialogHeader,
-    AlertDialogTitle
+    AlertDialogTitle,
 } from '@repo/ui/alert-dialog';
 import { Button } from '@repo/ui/button';
 import editIcon from '@repo/ui/icons/admin/edit.svg';
 import trashIcon from '@repo/ui/icons/admin/trash.svg';
 import { toast } from '@repo/ui/sonner';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 import { deleteBookById } from '../actions/book';
 
@@ -23,6 +24,11 @@ interface BookCardActionsProps {
 
 const BookCardActions = ({ book }: BookCardActionsProps) => {
     const [isConfirmOpen, setIsConfirmOpen] = React.useState(false);
+
+    const router = useRouter();
+    const handleNavigation = () => {
+        router.push(`/admin/books/edit/${book.id}`);
+    }
 
     const handleDeleteBook = async () => {
         const result = await deleteBookById(book.id);
@@ -41,29 +47,34 @@ const BookCardActions = ({ book }: BookCardActionsProps) => {
 
     return (
         <>
-            <AlertDialog open={isConfirmOpen} onOpenChange={setIsConfirmOpen}>
-                <AlertDialogContent>
-                    <AlertDialogHeader>
-                        <AlertDialogTitle>
-                            Are you absolutely sure?
-                        </AlertDialogTitle>
-                        <AlertDialogDescription>
-                            This action will mark the file for deletion. It will
-                            be moved to the Trash bin. And it will be
-                            permanently deleted after 30 days.
-                        </AlertDialogDescription>
-                    </AlertDialogHeader>
-                    <AlertDialogFooter>
-                        <AlertDialogCancel>Cancel</AlertDialogCancel>
-                        <AlertDialogAction onClick={handleDeleteBook}>
-                            Continue
-                        </AlertDialogAction>
-                    </AlertDialogFooter>
-                </AlertDialogContent>
-            </AlertDialog>
+            <div>
+                <AlertDialog
+                    open={isConfirmOpen}
+                    onOpenChange={setIsConfirmOpen}
+                >
+                    <AlertDialogContent>
+                        <AlertDialogHeader>
+                            <AlertDialogTitle>
+                                Are you absolutely sure?
+                            </AlertDialogTitle>
+                            <AlertDialogDescription>
+                                This action will mark the file for deletion. It
+                                will be moved to the Trash bin. And it will be
+                                permanently deleted after 30 days.
+                            </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                            <AlertDialogCancel>Cancel</AlertDialogCancel>
+                            <AlertDialogAction onClick={handleDeleteBook}>
+                                Continue
+                            </AlertDialogAction>
+                        </AlertDialogFooter>
+                    </AlertDialogContent>
+                </AlertDialog>
+            </div>
 
             <div className="flex  space-x-3">
-                <Button className="text-primary-admin">
+                <Button className="text-primary-admin" onClick={handleNavigation}>
                     <Image src={editIcon} alt="edit" width={20} height={20} />
                 </Button>
                 <Button
