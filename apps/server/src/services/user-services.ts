@@ -119,6 +119,23 @@ export async function deleteUser(email: string) {
     return deletedUser;
 }
 
+export async function deleteUserById(userId: string) {
+    const user = await getUserByUserId(userId);
+
+    if (!user) throw new BackendError('USER_NOT_FOUND');
+
+    const [deletedUser] = await db
+        .delete(users)
+        .where(eq(users.id, userId))
+        .returning({
+            id: users.id,
+            name: users.fullName,
+            email: users.email,
+        });
+
+    return deletedUser;
+}
+
 export async function updateUser(
     user: User,
     { fullName, email, password }: UpdateUser,

@@ -3,6 +3,15 @@
 @tailwind utilities;
 
 @layer components {
+    .alert-dialog {
+        @apply block visible opacity-100 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 bg-white border rounded-lg shadow-lg p-5 w-1/4 max-w-screen-sm; /* Updated styles */
+    }
+    
+    /* Optional: Add transitions for smooth appearance */
+    .alert-dialog {
+        @apply transition-opacity duration-300 ease-in-out;
+    }
+
     .admin-container {
         @apply flex w-[calc(100%-264px)] flex-1 flex-col bg-light-300 p-5 xs:p-10;
     }

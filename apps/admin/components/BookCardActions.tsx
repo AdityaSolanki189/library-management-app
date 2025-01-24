@@ -1,23 +1,12 @@
 import type { Book } from '@repo/shared/schema';
-import {
-    AlertDialog,
-    AlertDialogAction,
-    AlertDialogCancel,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle,
-    AlertDialogTrigger,
-} from '@repo/ui/alert-dialog';
 import { Button } from '@repo/ui/button';
 import editIcon from '@repo/ui/icons/admin/edit.svg';
-import trashIcon from '@repo/ui/icons/admin/trash.svg';
 import { toast } from '@repo/ui/sonner';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import React from 'react';
+import { useState } from 'react';
 import { deleteBookById } from '../actions/book';
+import ConfirmDeleteDialog from './ConfirmDeleteDialog';
 
 interface BookCardActionsProps {
     book: Book;
@@ -25,7 +14,7 @@ interface BookCardActionsProps {
 
 const BookCardActions = ({ book }: BookCardActionsProps) => {
     const router = useRouter();
-    const [isConfirmOpen, setIsConfirmOpen] = React.useState(false);
+    const [isConfirmOpen, setIsConfirmOpen] = useState(false);
 
     const handleNavigation = () => {
         router.push(`/admin/books/edit/${book.id}`);
@@ -56,36 +45,11 @@ const BookCardActions = ({ book }: BookCardActionsProps) => {
                     height={20}
                 />
             </Button>
-            <AlertDialog open={isConfirmOpen} onOpenChange={setIsConfirmOpen}>
-                <AlertDialogTrigger asChild>
-                    <Button className="text-red-500">
-                        <Image
-                            src={trashIcon || '/placeholder.svg'}
-                            alt="delete"
-                            width={20}
-                            height={20}
-                        />
-                    </Button>
-                </AlertDialogTrigger>
-                <AlertDialogContent className="display-block">
-                    <AlertDialogHeader>
-                        <AlertDialogTitle>
-                            Are you absolutely sure?
-                        </AlertDialogTitle>
-                        <AlertDialogDescription>
-                            This action will mark the file for deletion. It will
-                            be moved to the Trash bin. And it will be
-                            permanently deleted after 30 days.
-                        </AlertDialogDescription>
-                    </AlertDialogHeader>
-                    <AlertDialogFooter>
-                        <AlertDialogCancel>Cancel</AlertDialogCancel>
-                        <AlertDialogAction onClick={handleDeleteBook}>
-                            Continue
-                        </AlertDialogAction>
-                    </AlertDialogFooter>
-                </AlertDialogContent>
-            </AlertDialog>
+            <ConfirmDeleteDialog
+                isDialogOpen={isConfirmOpen}
+                setIsDialogOpen={setIsConfirmOpen}
+                handleDelete={handleDeleteBook}
+            />
         </div>
     );
 };

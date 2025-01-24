@@ -60,3 +60,32 @@ export async function getAllUsers() {
         };
     }
 }
+
+export async function deleteUserById(userId: string) {
+    const session = await getSession();
+
+    try {
+        const response = await fetch(`${apiUrl}/api/admin/user/${userId}`, {
+            method: 'DELETE',
+            headers: {
+                Authorization: `Bearer ${session?.accessToken}`,
+            },
+        });
+
+        if (!response.ok) {
+            const responseData = await response.json();
+            return { success: false, error: responseData.message };
+        }
+
+        const responseData = await response.json();
+        return {
+            success: responseData.success,
+        };
+    } catch (error: any) {
+        console.error('Failed to delete user:', error);
+        return {
+            success: false,
+            error: error.message,
+        };
+    }
+}
