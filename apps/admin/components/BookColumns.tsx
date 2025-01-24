@@ -22,7 +22,7 @@ export const columns: ColumnDef<Book>[] = [
         accessorKey: 'createdAt',
         header: () => <div className='text-left font-semibold bg-slate-200 p-2'>Date Created</div>,
         cell: ({ row }) => {
-            const formattedDate = format(row.getValue('createdAt'), 'MM/dd/yyyy');
+            const formattedDate = format(row.getValue('createdAt'), 'PP');
             return (
                 <div>
                     {formattedDate}

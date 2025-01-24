@@ -7,6 +7,8 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { getAllUsers } from '../../../actions/user';
 import Loader from '../../../components/Loader';
+import { DataTable } from '@repo/ui/data-table';
+import { columns } from '../../../components/UserColumns';
 
 const page = () => {
     const [users, setUsers] = useState<User[]>([]);
@@ -41,7 +43,7 @@ const page = () => {
                 </div>
             ) : (
                 <div className="mt-7 w-full overflow-hidden">
-                    {/* <DataTable data={books} columns={columns} /> */}
+                    <DataTable data={users} columns={columns} />
                 </div>
             )}
         </section>
