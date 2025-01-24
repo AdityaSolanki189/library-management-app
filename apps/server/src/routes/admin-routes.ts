@@ -7,6 +7,7 @@ import {
 } from '../controllers/admin-controllers';
 import { authenticate } from '../middlewares/auth';
 import { createRouter } from '../utils/create';
+import { handleAddUser } from '../controllers/user-controllers';
 
 export default createRouter((router: Router) => {
   router.use(
@@ -19,4 +20,6 @@ export default createRouter((router: Router) => {
   router.get('/all-verfied-users', handleGetAllVerifiedUsers);
   router.delete('/remove-unverified-users', handleDeleteAllUnverifiedUsers);
   router.delete('/delete/:userId', handleDeleteUserById);
+
+  router.post('/add-user', handleAddUser);
 });

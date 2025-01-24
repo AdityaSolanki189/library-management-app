@@ -1,14 +1,13 @@
-import process from 'node:process';
-import { Buffer } from 'node:buffer';
 import { render } from '@react-email/render';
+import { signInSchema, signUpSchema } from '@repo/shared/schema';
 import argon2 from 'argon2';
+import { Buffer } from 'node:buffer';
+import process from 'node:process';
 import {
     type User,
     deleteUserSchema,
-    loginSchema,
-    newUserSchema,
     updateUserSchema,
-    verifyUserSchema,
+    verifyUserSchema
 } from '../schema/user';
 import {
     addUser,
@@ -22,7 +21,6 @@ import { createHandler } from '../utils/create';
 import { sendVerificationEmail } from '../utils/email';
 import { BackendError, getStatusFromErrorCode } from '../utils/errors';
 import generateToken from '../utils/jwt';
-import { signInSchema, signUpSchema } from '@repo/shared/schema';
 
 export const handleUserLogin = createHandler(signInSchema, async (req, res) => {
     const { email, password } = req.body;
@@ -52,19 +50,19 @@ export const handleAddUser = createHandler(signUpSchema, async (req, res) => {
 
     const { user: addedUser, code } = await addUser(user);
 
-    const status = await sendVerificationEmail(
-        process.env.API_BASE_URL!,
-        addedUser.name,
-        addedUser.email,
-        code,
-    );
+    // const status = await sendVerificationEmail(
+    //     process.env.API_BASE_URL!,
+    //     addedUser.name,
+    //     addedUser.email,
+    //     code,
+    // );
 
-    if (status !== 200) {
-        // await deleteUser(addedUser.email);
-        throw new BackendError('INTERNAL_ERROR', {
-            message: 'Failed to signup user',
-        });
-    }
+    // if (status !== 200) {
+    //     // await deleteUser(addedUser.email);
+    //     throw new BackendError('INTERNAL_ERROR', {
+    //         message: 'Failed to signup user',
+    //     });
+    // }
 
     res.status(201).json(addedUser);
 });

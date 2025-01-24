@@ -1,13 +1,11 @@
 "use client";
 
 import { User } from '@repo/shared/schema';
-import { Button } from '@repo/ui/button';
+import { DataTable } from '@repo/ui/data-table';
 import { toast } from '@repo/ui/sonner';
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { getAllUsers } from '../../../actions/user';
 import Loader from '../../../components/Loader';
-import { DataTable } from '@repo/ui/data-table';
 import { columns } from '../../../components/UserColumns';
 
 const page = () => {

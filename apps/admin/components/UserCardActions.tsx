@@ -1,9 +1,8 @@
 import { User } from '@repo/shared/schema';
 import { toast } from '@repo/ui/sonner';
 import { useState } from 'react';
-import { deleteBookById } from '../actions/book';
-import ConfirmDeleteDialog from './ConfirmDeleteDialog';
 import { deleteUserById } from '../actions/user';
+import ConfirmDeleteDialog from './ConfirmDeleteDialog';
 
 interface UserCardActionsProps {
     user: User;
