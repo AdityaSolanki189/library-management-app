@@ -15,8 +15,9 @@ import {
     TableHead,
     TableHeader,
     TableRow,
-} from './table.js';
-import { Button } from './button.js';
+} from './table';
+import { Button } from './button';
+import React from 'react';
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[];
@@ -50,7 +51,7 @@ export function DataTable<TData, TValue>({
                                                       header.column.columnDef
                                                           .header,
                                                       header.getContext(),
-                                                  )}
+                                                  ) as React.ReactNode}
                                         </TableHead>
                                     );
                                 })}
@@ -71,7 +72,7 @@ export function DataTable<TData, TValue>({
                                             {flexRender(
                                                 cell.column.columnDef.cell,
                                                 cell.getContext(),
-                                            )}
+                                            ) as React.ReactNode}
                                         </TableCell>
                                     ))}
                                 </TableRow>

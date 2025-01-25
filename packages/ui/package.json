@@ -66,5 +66,5 @@
         "./data-table": "./src/components/ui/data-table.tsx",
         "./dialog": "./src/components/ui/dialog.tsx"
     },
-    "type": "module"
+    "type": "commonjs"
 }
