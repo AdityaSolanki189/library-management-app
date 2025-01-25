@@ -5,7 +5,7 @@ import { createRouter } from '../utils/create';
 import bookRoutes from './book-routes';
 
 export default createRouter((router: Router) => {
-  router.use('/admin', adminRoutes);
-  router.use('/user', userRoutes);
-  router.use('/book', bookRoutes);
+    router.use('/admin', adminRoutes);
+    router.use('/user', userRoutes);
+    router.use('/book', bookRoutes);
 });

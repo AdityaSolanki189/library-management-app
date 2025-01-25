@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
-import "@repo/ui/globals.css";
-import { Toaster } from "@repo/ui/sonner";
+import '@repo/ui/globals.css';
+import { Toaster } from '@repo/ui/sonner';
 
 const ibmPlexSans = localFont({
     src: [

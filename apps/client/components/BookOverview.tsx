@@ -6,7 +6,7 @@ interface BookOverviewProps {
     latestBook: Book;
 }
 
-const BookOverview = ({ latestBook } : BookOverviewProps) => {
+const BookOverview = ({ latestBook }: BookOverviewProps) => {
     return (
         <section className="book-overview">
             <div className="flex flex-1 flex-col gap-4">
@@ -28,7 +28,13 @@ const BookOverview = ({ latestBook } : BookOverviewProps) => {
                     </p>
 
                     <div className="flex flex-row gap-1">
-                        <Image src={star} alt="star" width={22} height={22} className='cursor-pointer hover:decoration-primary'/>
+                        <Image
+                            src={star}
+                            alt="star"
+                            width={22}
+                            height={22}
+                            className="cursor-pointer hover:decoration-primary"
+                        />
                         <p>{latestBook.rating}</p>
                     </div>
                 </div>
@@ -39,7 +45,8 @@ const BookOverview = ({ latestBook } : BookOverviewProps) => {
                     </p>
 
                     <p>
-                        Available Books <span>{latestBook.availableCopies}</span>
+                        Available Books{' '}
+                        <span>{latestBook.availableCopies}</span>
                     </p>
                 </div>
 

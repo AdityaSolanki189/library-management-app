@@ -13,19 +13,22 @@ const BookOverviewSkeleton = () => {
                     {/* Author */}
                     <div className="flex items-center gap-2">
                         <Skeleton className="h-6 w-8 " /> {/* "By" text */}
-                        <Skeleton className="h-6 w-32 bg-primary" /> {/* Author name */}
+                        <Skeleton className="h-6 w-32 bg-primary" />{' '}
+                        {/* Author name */}
                     </div>
 
                     {/* Genre */}
                     <div className="flex items-center gap-2">
                         <Skeleton className="h-6 w-12" /> {/* "Genre" text */}
-                        <Skeleton className="h-6 w-24 bg-primary" /> {/* Genre value */}
+                        <Skeleton className="h-6 w-24 bg-primary" />{' '}
+                        {/* Genre value */}
                     </div>
 
                     {/* Rating */}
                     <div className="flex flex-row items-center gap-1">
                         <Skeleton className="h-6 w-6" /> {/* Star icon */}
-                        <Skeleton className="h-6 w-12 bg-primary" /> {/* Rating value */}
+                        <Skeleton className="h-6 w-12 bg-primary" />{' '}
+                        {/* Rating value */}
                     </div>
                 </div>
 
@@ -64,7 +67,10 @@ function Skeleton({
 }: React.HTMLAttributes<HTMLDivElement>) {
     return (
         <div
-            className={cn('animate-pulse rounded-md bg-muted opacity-30', className)}
+            className={cn(
+                'animate-pulse rounded-md bg-muted opacity-30',
+                className,
+            )}
             {...props}
         />
     );

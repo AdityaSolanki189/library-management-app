@@ -1,8 +1,8 @@
-import home from "@repo/ui/icons/admin/home.svg"
-import users from "@repo/ui/icons/admin/users.svg"
-import book from "@repo/ui/icons/admin/book.svg"
-import bookmark from "@repo/ui/icons/admin/bookmark.svg"
-import user from "@repo/ui/icons/admin/user.svg"
+import home from '@repo/ui/icons/admin/home.svg';
+import users from '@repo/ui/icons/admin/users.svg';
+import book from '@repo/ui/icons/admin/book.svg';
+import bookmark from '@repo/ui/icons/admin/bookmark.svg';
+import user from '@repo/ui/icons/admin/user.svg';
 
 export const adminSideBarLinks = [
     {

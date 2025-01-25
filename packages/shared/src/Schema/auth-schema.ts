@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from 'zod';
 
 //New Client Auth
 export const signUpSchema = z.object({

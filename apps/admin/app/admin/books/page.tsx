@@ -40,8 +40,7 @@ const Page = () => {
                 </Button>
             </div>
 
-
-            { loading ? (
+            {loading ? (
                 <div className="flex justify-center items-center h-96">
                     <Loader />
                 </div>

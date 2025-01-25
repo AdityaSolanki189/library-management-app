@@ -10,7 +10,7 @@ export function authenticate(
 ) {
     return createHandler(async (req, res, next) => {
         const { authorization } = req.headers;
-        
+
         if (!authorization) {
             throw new BackendError('UNAUTHORIZED', {
                 message: 'Authorization header not found',

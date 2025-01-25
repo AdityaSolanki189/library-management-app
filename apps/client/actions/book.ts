@@ -1,5 +1,5 @@
-import { apiUrl } from "../config";
-import { getSession } from "../lib/sessions";
+import { apiUrl } from '../config';
+import { getSession } from '../lib/sessions';
 
 export async function getLatestBooks() {
     const session = await getSession();
@@ -21,14 +21,14 @@ export async function getLatestBooks() {
             return {
                 success: false,
                 error: responseData.message,
-            }
+            };
         }
 
         const responseData = await response.json();
         return {
             success: responseData.success,
             books: responseData.books,
-        }
+        };
     } catch (error: any) {
         console.error('Error fetching latest books:', error);
         return {

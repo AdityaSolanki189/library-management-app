@@ -1,11 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { decryptSession, isValidToken } from './lib/sessions';
 
-const PROTECTED_ROUTES = [
-    '/admin',
-    '/admin/books',
-    '/admin/books/new',
-];
+const PROTECTED_ROUTES = ['/admin', '/admin/books', '/admin/books/new'];
 
 const PUBLIC_ROUTES = ['/sign-in', '/sign-up', '/'];
 

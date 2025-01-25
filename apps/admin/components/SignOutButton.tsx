@@ -5,7 +5,7 @@ import logout from '@repo/ui/icons/logout.svg';
 import Image from 'next/image';
 import { signout } from '../actions/auth';
 
-function SignOutButton(){
+function SignOutButton() {
     const handleOnSignOut = async () => {
         await signout();
     };
@@ -26,6 +26,6 @@ function SignOutButton(){
             </div>
         </Button>
     );
-};
+}
 
 export default SignOutButton;

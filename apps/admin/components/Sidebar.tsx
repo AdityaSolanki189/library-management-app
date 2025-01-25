@@ -1,7 +1,7 @@
 'use client';
 
 import { Avatar, AvatarFallback } from '@repo/ui/avatar';
-import logo from "@repo/ui/icons/admin/logo.svg";
+import logo from '@repo/ui/icons/admin/logo.svg';
 import { cn, getInitials } from '@repo/ui/utils';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -16,12 +16,7 @@ const Sidebar = ({ user }: { user: User }) => {
         <div className="admin-sidebar">
             <div>
                 <div className="logo">
-                    <Image
-                        src={logo}
-                        alt="logo"
-                        height={42}
-                        width={42}
-                    />
+                    <Image src={logo} alt="logo" height={42} width={42} />
                     <h1>BookWise</h1>
                 </div>
 
@@ -66,7 +61,7 @@ const Sidebar = ({ user }: { user: User }) => {
                     })}
                 </div>
 
-                <div className='mt-10 border-t border-red-400 border-dashed pt-4'>
+                <div className="mt-10 border-t border-red-400 border-dashed pt-4">
                     <SignOutButton />
                 </div>
             </div>
@@ -82,9 +77,7 @@ const Sidebar = ({ user }: { user: User }) => {
                     <p className="font-semibold text-dark-200">
                         {user?.fullName}
                     </p>
-                    <p className="text-xs text-light-500">
-                        {user?.email}
-                    </p>
+                    <p className="text-xs text-light-500">{user?.email}</p>
                 </div>
             </div>
         </div>

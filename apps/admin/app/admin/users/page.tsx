@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { User } from '@repo/shared/schema';
 import { DataTable } from '@repo/ui/data-table';

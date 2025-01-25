@@ -1,4 +1,4 @@
-"use server";
+'use server';
 
 import { SessionPayload } from '@repo/shared/schema';
 import { decodeJwt, jwtVerify } from 'jose';

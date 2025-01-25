@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 import { getUser } from '../../actions/user';
 import Header from '../../components/Header';
 import Sidebar from '../../components/Sidebar';
-import "../styles.css";
+import '../styles.css';
 
 const Layout = async ({ children }: { children: ReactNode }) => {
     const user = await getUser();

@@ -29,7 +29,10 @@ import ColorPicker from '../components/ColorPicker';
 interface Props<T extends FieldValues> {
     schema: ZodType<T>;
     defaultValues: T;
-    onSubmit: (data: T, id?: string) => Promise<{ success: boolean; error?: string }>;
+    onSubmit: (
+        data: T,
+        id?: string,
+    ) => Promise<{ success: boolean; error?: string }>;
     type: 'create' | 'update';
 }
 

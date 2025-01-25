@@ -7,7 +7,7 @@ import {
     type User,
     deleteUserSchema,
     updateUserSchema,
-    verifyUserSchema
+    verifyUserSchema,
 } from '../schema/user';
 import {
     addUser,

@@ -1,4 +1,4 @@
-"use server";
+'use server';
 
 import { SessionPayload } from '@repo/shared/schema';
 import { decodeJwt, jwtVerify } from 'jose';
@@ -71,7 +71,7 @@ export async function isValidToken(token: string): Promise<boolean> {
             return false;
         }
         // Check if the user is a Admin User
-        if(decoded.isAdmin !== true){
+        if (decoded.isAdmin !== true) {
             await deleteSession();
             return false;
         }

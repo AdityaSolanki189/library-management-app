@@ -28,7 +28,7 @@ const UserCardActions = ({ user }: UserCardActionsProps) => {
 
     return (
         <div>
-            <ConfirmDeleteDialog 
+            <ConfirmDeleteDialog
                 isDialogOpen={isConfirmOpen}
                 setIsDialogOpen={setIsConfirmOpen}
                 handleDelete={handleDeleteUser}

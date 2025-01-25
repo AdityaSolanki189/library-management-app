@@ -5,7 +5,6 @@ import Header from '../../components/Header';
 import ClientToast from '../../components/ClientToast';
 
 const RootLayout = async ({ children }: { children: ReactNode }) => {
-    
     return (
         <main className="root-container ">
             <div className="mx-auto min-h-screen w-full">

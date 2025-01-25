@@ -1,4 +1,3 @@
-
 const Loader = () => {
     return (
         <div className="h-max w-full flex justify-center items-center place-items-center">

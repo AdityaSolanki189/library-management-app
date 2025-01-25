@@ -93,7 +93,7 @@ export const columns: ColumnDef<User>[] = [
         ),
         cell: ({ row }) => {
             return (
-                <Link href={''} className='flex gap-2'>
+                <Link href={''} className="flex gap-2">
                     <span className="text-blue-600 ml-2 font-semibold">
                         View ID Card
                     </span>
