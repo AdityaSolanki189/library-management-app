@@ -1,0 +1,29 @@
+name: Build Succeeds on PR
+
+on: 
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build TurboRepo Application (2xNext.js + 1xExpress.js)
+    runs-on: ubuntu-latest
+  
+    steps:
+    - name: Check out the repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: "20"
+
+    - name: Install pnpm
+      run: npm install -g pnpm
+
+    - name: Install dependencies
+      run: pnpm install
+
+    - name: Build the API
+      run: pnpm run build
