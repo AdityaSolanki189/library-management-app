@@ -65,6 +65,5 @@
         "./alert-dialog": "./src/components/ui/alert-dialog.tsx",
         "./data-table": "./src/components/ui/data-table.tsx",
         "./dialog": "./src/components/ui/dialog.tsx"
-    },
-    "type": "commonjs"
+    }
 }
