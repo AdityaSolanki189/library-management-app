@@ -28,5 +28,5 @@ jobs:
     - name: Install dependencies
       run: pnpm install
 
-    - name: Build the API
+    - name: Build the App
       run: pnpm run build
