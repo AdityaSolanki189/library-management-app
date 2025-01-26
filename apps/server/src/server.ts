@@ -18,7 +18,16 @@ const app = express();
 app.use(helmet());
 
 app.use(express.json());
-app.use(cors());
+// cors middleware
+const devOrigin = ['http://localhost:3001', 'http://localhost:3000'];
+const allowedOrigins = devOrigin;
+app.use(
+    cors({
+        origin: allowedOrigins,
+        credentials: true,
+    }),
+);
+
 app.use(requestIp());
 app.use(
     rateLimit({
@@ -51,12 +60,10 @@ app.get('/health', (_req, res) => {
 
 app.use('/api', routes);
 
-app.all('*', handle404Error);
-
 app.use(errorHandler);
 
 app.listen(PORT, () => {
     consola.info(`Server running at http://localhost:${PORT}`);
     // Swagger Docs
-    swaggerDocs(app, 4001);
+    swaggerDocs(app, +PORT!);
 });
