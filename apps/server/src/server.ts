@@ -8,10 +8,14 @@ import { logger } from './utils/logger';
 import { errorHandler, handle404Error } from './utils/errors';
 import routes from './routes/routes';
 import './utils/env';
+import helmet from 'helmet';
+import swaggerDocs from './utils/swagger';
 
 const { PORT } = process.env;
 
 const app = express();
+
+app.use(helmet());
 
 app.use(express.json());
 app.use(cors());
@@ -53,4 +57,6 @@ app.use(errorHandler);
 
 app.listen(PORT, () => {
     consola.info(`Server running at http://localhost:${PORT}`);
+    // Swagger Docs
+    swaggerDocs(app, 4001);
 });
