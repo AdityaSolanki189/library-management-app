@@ -1,23 +1,26 @@
 {
-  "name": "library-management-app",
-  "private": true,
-  "scripts": {
-    "build": "turbo build",
-    "dev": "turbo dev",
-    "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "prepare": "husky"
-  },
-  "devDependencies": {
-    "@commitlint/cli": "^19.6.1",
-    "@commitlint/config-conventional": "^19.6.0",
-    "husky": "^9.1.7",
-    "prettier": "^3.2.5",
-    "turbo": "^2.3.4",
-    "typescript": "5.5.4"
-  },
-  "packageManager": "pnpm@9.0.0",
-  "engines": {
-    "node": ">=18"
-  }
+    "name": "library-management-app",
+    "private": true,
+    "scripts": {
+        "build": "turbo build",
+        "dev": "turbo dev",
+        "lint": "turbo lint",
+        "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+        "prepare": "husky",
+        "start-admin-app": "cd ./apps/admin && pnpm run start",
+        "start-client-app": "cd ./apps/client && pnpm run start",
+        "start-server-app": "cd ./apps/server && pnpm run start"
+    },
+    "devDependencies": {
+        "@commitlint/cli": "^19.6.1",
+        "@commitlint/config-conventional": "^19.6.0",
+        "husky": "^9.1.7",
+        "prettier": "^3.2.5",
+        "turbo": "^2.3.4",
+        "typescript": "5.5.4"
+    },
+    "packageManager": "pnpm@9.0.0",
+    "engines": {
+        "node": ">=18"
+    }
 }

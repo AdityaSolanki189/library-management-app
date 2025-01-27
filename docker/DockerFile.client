@@ -1,0 +1,15 @@
+FROM node:20.17-alpine3.20
+
+WORKDIR /usr/src/app
+
+COPY package.json package-lock.json turbo.json ./
+
+COPY apps ./apps
+
+COPY packages ./packages
+
+RUN pnpm install
+
+RUN pnpm run build --filter=client
+
+CMD ["pnpm","run","start-client-app"] 
