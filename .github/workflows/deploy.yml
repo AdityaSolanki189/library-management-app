@@ -103,3 +103,11 @@ jobs:
           -e FROM_EMAIL="aditya2ss283@gmail.com" \
           -e PORT=4000 \
           -e API_BASE_URL="http://localhost:4000" \
+          adisolanki24/library-manager-server:latest
+
+          sleep 5
+
+          sudo docker ps | grep -E 'library-manager-admin|library-manager-client|library-manager-server'
+          sudo docker logs --tail 50 library-manager-admin
+          sudo docker logs --tail 50 library-manager-client
+          sudo docker logs --tail 50 library-manager-server
