@@ -38,7 +38,7 @@ jobs:
       run: |
         # Define image names
         DOCKER_IMAGES=("client" "admin" "server")
-        DOCKERFILES=("./docker/Dockerfile.client" "./docker/Dockerfile.admin" "./docker/Dockerfile.server")
+        DOCKERFILES=("./docker/DockerFile.client" "./docker/DockerFile.admin" "./docker/DockerFile.server")
 
         for i in "${!DOCKER_IMAGES[@]}"; do
           IMAGE_NAME="adisolanki24/library-manager-${DOCKER_IMAGES[i]}"
