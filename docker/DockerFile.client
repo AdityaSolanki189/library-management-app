@@ -5,6 +5,7 @@ WORKDIR /app
 RUN corepack enable && corepack prepare pnpm@latest --activate
 
 COPY package*.json ./
+COPY pnpm-lock.yaml ./
 COPY turbo.json ./
 COPY apps/client/package*.json ./apps/client/
 COPY apps/admin/package*.json ./apps/admin/
