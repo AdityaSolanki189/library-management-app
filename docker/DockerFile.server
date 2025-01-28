@@ -1,4 +1,4 @@
-FROM node:20.17-alpine3.20 AS builder
+FROM node:20.17-alpine3.20
 
 WORKDIR /app
 
@@ -16,14 +16,4 @@ COPY packages ./packages
 RUN pnpm install --frozen-lockfile
 RUN pnpm turbo run build --filter=server
 
-FROM node:20.17-alpine3.20 AS runner
-
-WORKDIR /app
-
-RUN corepack enable && corepack prepare pnpm@latest --activate
-
-# Cope Necessary files
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/apps/server/dist ./apps/server/dist
-
-CMD ["node","apps/server/dist/server.js"] 
+CMD ["pnpm","run","start-server-app"] 

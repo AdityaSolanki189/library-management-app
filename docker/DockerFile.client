@@ -1,4 +1,4 @@
-FROM node:20.17-alpine3.20 AS builder
+FROM node:20.17-alpine3.20
 
 WORKDIR /app
 
@@ -13,17 +13,4 @@ COPY apps/client ./apps/client
 
 COPY packages ./packages
 
-RUN pnpm install --frozen-lockfile
-RUN pnpm turbo run build --filter=client
-
-FROM node:20.17-alpine3.20 AS runner
-
-WORKDIR /app
-
-# Cope Necessary files
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/apps/client/.next/standalone ./apps/client/.next/standalone
-COPY --from=builder /app/apps/client/.next/static ./apps/client/.next/static
-COPY --from=builder /app/apps/client/public ./apps/client/public
-
-CMD ["node","apps/client/server.js"] 
+CMD ["pnpm","run","start-client-app"] 
