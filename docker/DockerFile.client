@@ -1,15 +1,27 @@
-FROM node:20.17-alpine3.20
+FROM node:20.17-alpine3.20 AS builder
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
-COPY package.json package-lock.json turbo.json ./
+COPY . .
 
-COPY apps ./apps
+RUN corepack enable && corepack prepare pnpm@latest --activate
+RUN pnpm install --frozen-lockfile
 
-COPY packages ./packages
-
-RUN pnpm install
-
+RUN pnpm --filter client deploy ./dist/client --stage
 RUN pnpm run build --filter=client
 
-CMD ["pnpm","run","start-client-app"] 
+FROM node:20.17-alpine3.20 AS runner
+
+WORKDIR /app
+
+ENV NODE_ENV development
+ENV PORT 3000
+
+# Cope Necessary files
+COPY --from=builder /app/dist/client/node_modules ./node_modules
+COPY --from=builder /app/apps/client/.next/standalone ./
+COPY --from=builder /app/apps/client/.next/static ./.next/static
+COPY --from=builder /app/dist/client/packages ./packages
+
+EXPOSE 3000
+CMD ["node","server.js"] 
