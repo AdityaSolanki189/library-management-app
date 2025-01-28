@@ -22,7 +22,7 @@ WORKDIR /app
 
 # Cope Necessary files
 COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/apps/client/.next/standalone ./
+COPY --from=builder /app/apps/client/.next/standalone ./apps/client/.next/standalone
 COPY --from=builder /app/apps/client/.next/static ./apps/client/.next/static
 COPY --from=builder /app/apps/client/public ./apps/client/public
 
