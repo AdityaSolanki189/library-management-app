@@ -2,7 +2,6 @@ import { render } from '@react-email/render';
 import { signInSchema, signUpSchema } from '@repo/shared/schema';
 import argon2 from 'argon2';
 import { Buffer } from 'node:buffer';
-import process from 'node:process';
 import {
     type User,
     deleteUserSchema,
@@ -18,7 +17,6 @@ import {
 } from '../services/user-services';
 import { UserVerified } from '../templates/user-verified';
 import { createHandler } from '../utils/create';
-import { sendVerificationEmail } from '../utils/email';
 import { BackendError, getStatusFromErrorCode } from '../utils/errors';
 import generateToken from '../utils/jwt';
 

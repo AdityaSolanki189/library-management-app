@@ -10,6 +10,7 @@ import routes from './routes/routes';
 import './utils/env';
 import helmet from 'helmet';
 import swaggerDocs from './utils/swagger';
+import 'dotenv/config';
 
 const { PORT } = process.env;
 

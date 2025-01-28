@@ -1,4 +1,3 @@
-import process from 'node:process';
 import crypto from 'node:crypto';
 import argon2 from 'argon2';
 import { eq } from 'drizzle-orm';
@@ -12,6 +11,7 @@ import { db } from '../utils/db';
 import { sendVerificationEmail } from '../utils/email';
 import { BackendError } from '../utils/errors';
 import { sha256 } from '../utils/hash';
+import "dotenv/config";
 
 export async function getUserByUserId(userId: string) {
     const [user] = await db
@@ -183,9 +183,8 @@ export async function updateUser(
     }
 
     if (email && code) {
-        const { API_BASE_URL } = process.env;
         const status = await sendVerificationEmail(
-            API_BASE_URL!,
+            process.env.API_BASE_URL!,
             updatedUser.name,
             updatedUser.email,
             code,

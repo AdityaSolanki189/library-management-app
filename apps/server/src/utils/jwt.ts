@@ -1,23 +1,21 @@
 import JWT from 'jsonwebtoken';
-import process from 'node:process';
 import { BackendError } from './errors';
+import 'dotenv/config';
 
 const JWT_CONFIG: JWT.SignOptions = {
     expiresIn: '7d',
 };
 
-const { JWT_SECRET } = process.env;
-
 export default function generateToken(
     userId: string,
     isAdmin: boolean,
 ): string {
-    return JWT.sign({ userId, isAdmin }, JWT_SECRET!, JWT_CONFIG!);
+    return JWT.sign({ userId, isAdmin }, process.env.JWT_SECRET!, JWT_CONFIG!);
 }
 
 export function verifyToken(token: string) {
     try {
-        const data = JWT.verify(token, JWT_SECRET!);
+        const data = JWT.verify(token, process.env.JWT_SECRET!);
 
         return data as { userId: string };
     } catch (err) {
