@@ -63,8 +63,8 @@ jobs:
         script: |
           # admin app deploy
           sudo docker pull adisolanki24/library-manager-admin:latest
-          sudo docker stop library-manager-admin || true
-          sudo docker rm library-manager-admin || true
+          sudo docker stop adisolanki24/library-manager-admin || true
+          sudo docker rm adisolanki24/library-manager-admin || true
 
           sudo docker image prune -f
 
@@ -75,8 +75,8 @@ jobs:
 
           # client app deploy
           sudo docker pull adisolanki24/library-manager-client:latest
-          sudo docker stop library-manager-client || true
-          sudo docker rm library-manager-client || true
+          sudo docker stop adisolanki24/library-manager-client || true
+          sudo docker rm adisolanki24/library-manager-client || true
 
           sudo docker image prune -f
 
@@ -87,8 +87,8 @@ jobs:
 
           # server app deploy
           sudo docker pull adisolanki24/library-manager-server:latest
-          sudo docker stop library-manager-server || true
-          sudo docker rm library-manager-server || true
+          sudo docker stop adisolanki24/library-manager-server || true
+          sudo docker rm adisolanki24/library-manager-server || true
 
           sudo docker image prune -f
 
