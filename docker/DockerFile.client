@@ -7,7 +7,7 @@ COPY . .
 RUN corepack enable && corepack prepare pnpm@latest --activate
 RUN pnpm install --frozen-lockfile
 
-RUN pnpm --filter client deploy ./dist/client --stage
+RUN pnpm --filter client deploy ./dist/client
 RUN pnpm run build --filter=client
 
 FROM node:20.17-alpine3.20 AS runner

@@ -1,2 +1,7 @@
+# Get list of changed files before formatting
+changed_files=$(git diff --name-only)
+
 pnpm run format
-git add .
+
+# Only add files that were changed by the formatter
+echo "$changed_files" | xargs git add -f --

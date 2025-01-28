@@ -7,7 +7,7 @@ COPY . .
 RUN corepack enable && corepack prepare pnpm@latest --activate
 RUN pnpm install --frozen-lockfile
 
-RUN pnpm --filter admin deploy ./dist/admin --stage
+RUN pnpm --filter admin deploy ./dist/admin
 RUN pnpm run build --filter=admin
 
 FROM node:20.17-alpine3.20 AS runner
