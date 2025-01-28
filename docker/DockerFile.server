@@ -2,26 +2,26 @@ FROM node:20.17-alpine3.20 AS builder
 
 WORKDIR /app
 
-COPY . .
-
 RUN corepack enable && corepack prepare pnpm@latest --activate
+
+COPY package*.json ./
+COPY turbo.json ./
+COPY apps/server/package*.json ./apps/server/
+
 RUN pnpm install --frozen-lockfile
 
-RUN pnpm --filter server deploy ./dist/admin
+COPY apps/server ./apps/server
+
 RUN pnpm run build --filter=server
 
 FROM node:20.17-alpine3.20 AS runner
 
 WORKDIR /app
 
-ENV NODE_ENV development
-ENV PORT 4000
+RUN corepack enable && corepack prepare pnpm@latest --activate
 
 # Cope Necessary files
-COPY --from=builder /app/apps/server/dist ./dist
-COPY --from=builder /app/dist/server/node_modules ./node_modules
-COPY --from=builder /app/apps/admin/package.json .
-COPY --from=builder /app/dist/server/packages ./packages
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/apps/server/dist ./apps/server/dist
 
-EXPOSE 4000
-CMD ["node","dist/server.js"] 
+CMD ["node","apps/server/dist/server.js"] 
