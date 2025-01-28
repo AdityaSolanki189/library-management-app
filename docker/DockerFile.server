@@ -9,13 +9,12 @@ COPY package.json ./
 COPY turbo.json ./
 COPY pnpm-lock.yaml* ./
 
-COPY apps/server/package*.json ./apps/server/
-
-RUN pnpm install --frozen-lockfile
-
 COPY apps/server ./apps/server
 
-RUN pnpm run build --filter=server
+COPY packages ./packages
+
+RUN pnpm install --frozen-lockfile
+RUN pnpm turbo run build --filter=server
 
 FROM node:20.17-alpine3.20 AS runner
 
