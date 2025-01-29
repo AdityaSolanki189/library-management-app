@@ -1,6 +1,5 @@
 import process from 'node:process';
 import { ZodError, z } from 'zod';
-import 'dotenv/config';
 
 const configSchema = z.object({
     PORT: z

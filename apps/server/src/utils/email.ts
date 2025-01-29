@@ -1,4 +1,3 @@
-import 'dotenv/config';
 import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses';
 import { render } from '@react-email/render';
 import { VerificationEmail } from '../templates/verification-email';
