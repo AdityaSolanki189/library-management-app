@@ -7,10 +7,13 @@ RUN corepack enable && corepack prepare pnpm@latest --activate
 COPY pnpm-workspace.yaml ./
 COPY package.json ./
 COPY turbo.json ./
-COPY pnpm-lock.yaml* ./
+COPY pnpm-lock.yaml ./
 
 COPY apps/client ./apps/client
 
 COPY packages ./packages
+
+RUN pnpm install --frozen-lockfile
+RUN pnpm turbo run build --filter=client
 
 CMD ["pnpm","run","start-client-app"] 
