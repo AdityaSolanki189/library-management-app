@@ -11,7 +11,7 @@ import { db } from '../utils/db';
 import { sendVerificationEmail } from '../utils/email';
 import { BackendError } from '../utils/errors';
 import { sha256 } from '../utils/hash';
-import "dotenv/config";
+import 'dotenv/config';
 
 export async function getUserByUserId(userId: string) {
     const [user] = await db
