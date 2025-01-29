@@ -1,18 +1,17 @@
-import process from 'node:process';
 import consola from 'consola';
 import cors from 'cors';
+import 'dotenv/config';
 import express from 'express';
 import rateLimit from 'express-rate-limit';
+import helmet from 'helmet';
 import { mw as requestIp } from 'request-ip';
-import { logger } from './utils/logger';
-import { errorHandler, handle404Error } from './utils/errors';
 import routes from './routes/routes';
 import './utils/env';
-import helmet from 'helmet';
+import { errorHandler } from './utils/errors';
+import { logger } from './utils/logger';
 import swaggerDocs from './utils/swagger';
-import 'dotenv/config';
 
-const { PORT } = process.env;
+const PORT = process.env.PORT!;
 
 const app = express();
 
