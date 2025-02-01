@@ -4,7 +4,7 @@
         "target": "ESNext",
         "lib": ["ESNext"],
         "module": "NodeNext",
-        "moduleResolution": "NodeNext",
+        "moduleResolution": "nodenext",
         "rootDir": "./",
         "outDir": ".build",
         "removeComments": true,
