@@ -6,7 +6,8 @@ import {
 } from 'express';
 import type { z } from 'zod';
 
-export function createRouter(callback: (router: Router) => void) {
+export function createRouter(callback: (router: Router) => void): Router {
+    // Add explicit return type
     const router = Router();
     callback(router);
     return router;

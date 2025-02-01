@@ -41,7 +41,7 @@ export const handleGetAllBooks = createHandler(async (_req, res) => {
 export const handleGetBookById = createHandler(async (_req, res) => {
     const { id } = _req.params;
 
-    const book = await getBookById(id);
+    const book = await getBookById(id!);
 
     if (!book) {
         throw new BackendError('NOT_FOUND', {
@@ -85,7 +85,7 @@ export const handleUpdateBookById = createHandler(
                 updateFields.author,
             );
 
-            if (existingBook.length > 0 && existingBook[0].id !== id) {
+            if (existingBook?.length > 0 && existingBook[0]?.id !== id) {
                 throw new BackendError('CONFLICT', {
                     message:
                         'Another book with the same title and author already exists',
@@ -93,7 +93,7 @@ export const handleUpdateBookById = createHandler(
             }
         }
 
-        const updatedBook = await updateBook(id, updateFields);
+        const updatedBook = await updateBook(id!, updateFields);
 
         if (updatedBook.length === 0) {
             throw new BackendError('NOT_FOUND', {
@@ -112,7 +112,7 @@ export const handleUpdateBookById = createHandler(
 export const handleDeleteBook = createHandler(async (_req, res) => {
     const { id } = _req.params;
 
-    const deletedBook = await deleteBook(id);
+    const deletedBook = await deleteBook(id!);
 
     if (deleteBook.length === 0) {
         throw new BackendError('NOT_FOUND', {

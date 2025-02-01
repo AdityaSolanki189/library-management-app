@@ -1,14 +1,21 @@
 {
     "extends": "@repo/typescript-config/base.json",
-  "compilerOptions": {
-    "target": "es2016",       
-    "jsx": "react",           
-    "module": "Node16",                                /* Specify what module code is generated. */
-    "rootDir": "./",                                  /* Specify the root folder within your source files. */
-    "moduleResolution": "node16",    
-    "outDir": "./build",                                /* Allow 'import x from y' when a module doesn't have a default export. */
-    "esModuleInterop": true,        
-    "skipLibCheck": true,
-    "strict": true
-  }
+    "compilerOptions": {
+        "target": "ESNext",
+        "lib": ["ESNext"],
+        "module": "NodeNext",
+        "moduleResolution": "NodeNext",
+        "rootDir": "./",
+        "outDir": ".build",
+        "removeComments": true,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "strict": true,
+        "noImplicitReturns": true,
+        "skipLibCheck": true,
+        "baseUrl": "./src",
+        "jsx": "react"
+    },
+    "include": ["./src/**/*.ts"],
+    "exclude": ["node_modules", "./tests/**"]
 }

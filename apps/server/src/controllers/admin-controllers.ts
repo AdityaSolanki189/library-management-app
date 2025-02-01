@@ -3,7 +3,7 @@ import {
     getAllUsers,
     getAllVerifiedUsers,
 } from '../services/admin-services';
-import { addUser, deleteUserById } from '../services/user-services';
+import { deleteUserById } from '../services/user-services';
 import { createHandler } from '../utils/create';
 import { BackendError } from '../utils/errors';
 
@@ -31,16 +31,16 @@ export const handleGetAllUsers = createHandler(async (_req, res) => {
 
 export const handleDeleteAllUnverifiedUsers = createHandler(
     async (_req, res) => {
-        const unverfiedUsersCount = await deleteAllUnverifiedUsers();
+        const unverifiedUsersCount = await deleteAllUnverifiedUsers();
         res.status(200).json({
-            message: `${unverfiedUsersCount} unverified users deleted successfully`,
+            message: `${unverifiedUsersCount} unverified users deleted successfully`,
         });
     },
 );
 
 export const handleDeleteUserById = createHandler(async (req, res) => {
     const { userId } = req.params;
-    const user = await deleteUserById(userId);
+    const user = await deleteUserById(userId!);
 
     if (!user) {
         throw new BackendError('NOT_FOUND', {
