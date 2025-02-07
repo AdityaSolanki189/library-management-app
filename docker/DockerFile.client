@@ -2,6 +2,8 @@ FROM node:20.17-alpine3.20
 
 WORKDIR /app
 
+RUN npm install -g corepack@latest
+
 RUN corepack enable && corepack prepare pnpm@latest --activate
 
 COPY pnpm-workspace.yaml ./
