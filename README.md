@@ -114,12 +114,3 @@ Contributions are welcome! Please open an issue or submit a pull request.
 
 This project is licensed under the MIT License.
 
-```
-
-### Instructions:
-1. Replace `yourusername` in the clone command with your actual GitHub username.
-2. Adjust any sections as necessary to better fit your project specifics.
-3. Ensure that the routes listed match those in your codebase. If there are additional routes or changes, feel free to update the README accordingly.
-
-Let me know if you need any further modifications or additional sections!
-```
